@@ -1,10 +1,10 @@
-// pub struct Temp
+// struct Temp
 
-// pub enum TempUnit
+// enum TempUnit
 
 // impl Temp {
-// 	pub fn new() {}
-// 	pub fn convert() {}
+// 	fn new() {}
+// 	fn convert() {}
 // }
 
 #[cfg(test)]

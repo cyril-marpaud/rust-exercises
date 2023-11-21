@@ -3,3 +3,4 @@
 // pub mod fizzbuzz;
 // pub mod modularisation;
 // pub mod temperature;
+// pub mod traits;

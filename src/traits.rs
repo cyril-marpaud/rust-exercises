@@ -20,14 +20,12 @@ impl Temp {
 		}
 	}
 
-	/// Convert a `Temp` into another unit.
 	pub fn convert(&mut self, to: TempUnit) -> &mut Self {
 		self.temp = self.compute(&to);
 		self.unit = to;
 		self
 	}
 
-	/// Create a new `Temp` object.
 	pub fn new(temp: f64, unit: TempUnit) -> Self {
 		Self { temp, unit }
 	}

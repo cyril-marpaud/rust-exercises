@@ -57,13 +57,13 @@ mod tests {
 
 	#[test]
 	fn k_to_c() {
-		let mut t = Temp::new(0.0, TempUnit::Celsius);
-		assert_eq!(t.convert(TempUnit::Kelvin).temp, 273.15);
-		assert!(matches!(t.unit, TempUnit::Kelvin));
+		let mut t = Temp::new(273.15, TempUnit::Kelvin);
+		assert_eq!(t.convert(TempUnit::Celsius).temp, 0.0);
+		assert!(matches!(t.unit, TempUnit::Celsius));
 
-		let mut t = Temp::new(-56.95, TempUnit::Celsius);
-		assert_eq!(t.convert(TempUnit::Kelvin).temp, 216.2);
-		assert!(matches!(t.unit, TempUnit::Kelvin));
+		let mut t = Temp::new(216.2, TempUnit::Kelvin);
+		assert_eq!(round_2_digits(t.convert(TempUnit::Celsius).temp), -56.95);
+		assert!(matches!(t.unit, TempUnit::Celsius));
 	}
 
 	#[test]

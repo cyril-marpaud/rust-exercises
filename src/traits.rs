@@ -51,17 +51,20 @@ fn default() {
 fn display_c() {
 	assert_eq!(format!("{}", Temp::new(54.84, Celsius)), "54.84°C");
 	assert_eq!(format!("{}", Temp::new(-10.84, Celsius)), "-10.84°C");
+	assert_eq!(format!("{}", Celsius), "°C");
 }
 #[test]
 fn display_f() {
 	assert_eq!(format!("{}", Temp::new(1337.0, Farenheit)), "1337°F");
 	assert_eq!(format!("{}", Temp::new(-843.84, Farenheit)), "-843.84°F");
+	assert_eq!(format!("{}", Farenheit), "°F");
 }
 
 #[test]
 fn display_k() {
 	assert_eq!(format!("{}", Temp::new(273.15, Kelvin)), "273.15°K");
 	assert_eq!(format!("{}", Temp::new(-34.2, Kelvin)), "-34.2°K");
+	assert_eq!(format!("{}", Kelvin), "°K");
 }
 
 #[test]

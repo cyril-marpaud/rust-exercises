@@ -53,6 +53,7 @@ fn display_c() {
 	assert_eq!(format!("{}", Temp::new(-10.84, Celsius)), "-10.84°C");
 	assert_eq!(format!("{}", Celsius), "°C");
 }
+
 #[test]
 fn display_f() {
 	assert_eq!(format!("{}", Temp::new(1337.0, Fahrenheit)), "1337°F");
@@ -101,4 +102,15 @@ fn equality() {
 		Temp::new(216.2, TempUnit::Kelvin),   // <-- self
 		Temp::new(-56.95, TempUnit::Celsius), // <-- other
 	);
+}
+
+#[test]
+fn inequality() {
+	let t1 = Temp::new(10.0, Celsius);
+	let t2 = Temp::new(13.37, Fahrenheit);
+	let t3 = Temp::new(420.0, Kelvin);
+
+	assert_ne!(t1, t2);
+	assert_ne!(t1, t3);
+	assert_ne!(t2, t3);
 }

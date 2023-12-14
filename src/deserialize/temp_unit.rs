@@ -4,7 +4,7 @@ use std::fmt::Display;
 pub enum TempUnit {
 	#[default]
 	Celsius,
-	Farenheit,
+	Fahrenheit,
 	Kelvin,
 }
 
@@ -15,7 +15,7 @@ impl Display for TempUnit {
 			"°{}",
 			match self {
 				TempUnit::Celsius => 'C',
-				TempUnit::Farenheit => 'F',
+				TempUnit::Fahrenheit => 'F',
 				TempUnit::Kelvin => 'K',
 			}
 		)

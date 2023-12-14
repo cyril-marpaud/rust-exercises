@@ -1,5 +1,5 @@
 pub enum TempUnit {
 	Celsius,
-	Farenheit,
+	Fahrenheit,
 	Kelvin,
 }

@@ -13,12 +13,12 @@ pub struct Temp {
 impl Temp {
 	fn compute(&self, to: &TempUnit) -> f64 {
 		match (&self.unit, to) {
-			(Celsius, Farenheit) => 9.0 * self.temp / 5.0 + 32.0,
+			(Celsius, Fahrenheit) => 9.0 * self.temp / 5.0 + 32.0,
 			(Celsius, Kelvin) => self.temp + 273.15,
-			(Farenheit, Celsius) => 5.0 * (self.temp - 32.0) / 9.0,
-			(Farenheit, Kelvin) => 5.0 * (self.temp - 32.0) / 9.0 + 273.15,
+			(Fahrenheit, Celsius) => 5.0 * (self.temp - 32.0) / 9.0,
+			(Fahrenheit, Kelvin) => 5.0 * (self.temp - 32.0) / 9.0 + 273.15,
 			(Kelvin, Celsius) => self.temp - 273.15,
-			(Kelvin, Farenheit) => 9.0 * (self.temp - 273.15) / 5.0 + 32.0,
+			(Kelvin, Fahrenheit) => 9.0 * (self.temp - 273.15) / 5.0 + 32.0,
 			_ => self.temp,
 		}
 	}

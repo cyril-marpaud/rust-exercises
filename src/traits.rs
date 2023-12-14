@@ -10,12 +10,12 @@ pub struct Temp {
 impl Temp {
 	fn compute(&self, to: &TempUnit) -> f64 {
 		match (&self.unit, to) {
-			(Celsius, Farenheit) => 9.0 * self.temp / 5.0 + 32.0,
+			(Celsius, Fahrenheit) => 9.0 * self.temp / 5.0 + 32.0,
 			(Celsius, Kelvin) => self.temp + 273.15,
-			(Farenheit, Celsius) => 5.0 * (self.temp - 32.0) / 9.0,
-			(Farenheit, Kelvin) => 5.0 * (self.temp - 32.0) / 9.0 + 273.15,
+			(Fahrenheit, Celsius) => 5.0 * (self.temp - 32.0) / 9.0,
+			(Fahrenheit, Kelvin) => 5.0 * (self.temp - 32.0) / 9.0 + 273.15,
 			(Kelvin, Celsius) => self.temp - 273.15,
-			(Kelvin, Farenheit) => 9.0 * (self.temp - 273.15) / 5.0 + 32.0,
+			(Kelvin, Fahrenheit) => 9.0 * (self.temp - 273.15) / 5.0 + 32.0,
 			_ => self.temp,
 		}
 	}
@@ -34,7 +34,7 @@ impl Temp {
 #[test]
 fn comparison() {
 	let t1 = Temp::new(2.0, Celsius);
-	let t2 = Temp::new(33.0, Farenheit);
+	let t2 = Temp::new(33.0, Fahrenheit);
 	let t3 = Temp::new(273.15, Kelvin);
 
 	assert!(t1 > t2);
@@ -55,9 +55,9 @@ fn display_c() {
 }
 #[test]
 fn display_f() {
-	assert_eq!(format!("{}", Temp::new(1337.0, Farenheit)), "1337°F");
-	assert_eq!(format!("{}", Temp::new(-843.84, Farenheit)), "-843.84°F");
-	assert_eq!(format!("{}", Farenheit), "°F");
+	assert_eq!(format!("{}", Temp::new(1337.0, Fahrenheit)), "1337°F");
+	assert_eq!(format!("{}", Temp::new(-843.84, Fahrenheit)), "-843.84°F");
+	assert_eq!(format!("{}", Fahrenheit), "°F");
 }
 
 #[test]
@@ -70,7 +70,7 @@ fn display_k() {
 #[test]
 fn equality() {
 	let t1 = Temp::new(0.0, Celsius);
-	let t2 = Temp::new(32.0, Farenheit);
+	let t2 = Temp::new(32.0, Fahrenheit);
 	let t3 = Temp::new(273.15, Kelvin);
 
 	assert_eq!(t1, t2);
@@ -79,16 +79,16 @@ fn equality() {
 
 	assert_eq!(
 		Temp::new(50.5, TempUnit::Celsius),
-		Temp::new(122.9, TempUnit::Farenheit)
+		Temp::new(122.9, TempUnit::Fahrenheit)
 	);
 
 	assert_eq!(
-		Temp::new(63.5, TempUnit::Farenheit),
+		Temp::new(63.5, TempUnit::Fahrenheit),
 		Temp::new(17.5, TempUnit::Celsius)
 	);
 
 	assert_eq!(
-		Temp::new(-40.0, TempUnit::Farenheit),
+		Temp::new(-40.0, TempUnit::Fahrenheit),
 		Temp::new(-40.0, TempUnit::Celsius)
 	);
 

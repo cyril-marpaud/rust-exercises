@@ -62,9 +62,9 @@ fn display_f() {
 
 #[test]
 fn display_k() {
-	assert_eq!(format!("{}", Temp::new(273.15, Kelvin)), "273.15°K");
-	assert_eq!(format!("{}", Temp::new(-34.2, Kelvin)), "-34.2°K");
-	assert_eq!(format!("{}", Kelvin), "°K");
+	assert_eq!(format!("{}", Temp::new(273.15, Kelvin)), "273.15K");
+	assert_eq!(format!("{}", Temp::new(-34.2, Kelvin)), "-34.2K");
+	assert_eq!(format!("{}", Kelvin), "K");
 }
 
 #[test]

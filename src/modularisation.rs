@@ -9,19 +9,19 @@ pub struct Temp {
 
 pub enum TempUnit {
 	Celsius,
-	Farenheit,
+	Fahrenheit,
 	Kelvin,
 }
 
 impl Temp {
 	fn compute(&self, to: &TempUnit) -> f64 {
 		match (&self.unit, to) {
-			(Celsius, Farenheit) => 9.0 * self.temp / 5.0 + 32.0,
+			(Celsius, Fahrenheit) => 9.0 * self.temp / 5.0 + 32.0,
 			(Celsius, Kelvin) => self.temp + 273.15,
-			(Farenheit, Celsius) => 5.0 * (self.temp - 32.0) / 9.0,
-			(Farenheit, Kelvin) => 5.0 * (self.temp - 32.0) / 9.0 + 273.15,
+			(Fahrenheit, Celsius) => 5.0 * (self.temp - 32.0) / 9.0,
+			(Fahrenheit, Kelvin) => 5.0 * (self.temp - 32.0) / 9.0 + 273.15,
 			(Kelvin, Celsius) => self.temp - 273.15,
-			(Kelvin, Farenheit) => 9.0 * (self.temp - 273.15) / 5.0 + 32.0,
+			(Kelvin, Fahrenheit) => 9.0 * (self.temp - 273.15) / 5.0 + 32.0,
 			_ => self.temp,
 		}
 	}
@@ -44,12 +44,12 @@ mod tests {
 	#[test]
 	fn c_to_f() {
 		let mut t = Temp::new(0.0, Celsius);
-		assert_eq!(t.convert(Farenheit).temp, 32.0);
-		assert!(matches!(t.unit, Farenheit));
+		assert_eq!(t.convert(Fahrenheit).temp, 32.0);
+		assert!(matches!(t.unit, Fahrenheit));
 
 		let mut t = Temp::new(50.5, Celsius);
-		assert_eq!(t.convert(Farenheit).temp, 122.9);
-		assert!(matches!(t.unit, Farenheit));
+		assert_eq!(t.convert(Fahrenheit).temp, 122.9);
+		assert!(matches!(t.unit, Fahrenheit));
 	}
 
 	#[test]
@@ -65,22 +65,22 @@ mod tests {
 
 	#[test]
 	fn f_to_c() {
-		let mut t = Temp::new(-40.0, Farenheit);
+		let mut t = Temp::new(-40.0, Fahrenheit);
 		assert_eq!(t.convert(Celsius).temp, -40.0);
 		assert!(matches!(t.unit, Celsius));
 
-		let mut t = Temp::new(63.5, Farenheit);
+		let mut t = Temp::new(63.5, Fahrenheit);
 		assert_eq!(t.convert(Celsius).temp, 17.5);
 		assert!(matches!(t.unit, Celsius));
 	}
 
 	#[test]
 	fn f_to_k() {
-		let mut t = Temp::new(-459.67, Farenheit);
+		let mut t = Temp::new(-459.67, Fahrenheit);
 		assert_eq!(t.convert(Kelvin).temp, 0.0);
 		assert!(matches!(t.unit, Kelvin));
 
-		let mut t = Temp::new(-31.72, Farenheit);
+		let mut t = Temp::new(-31.72, Fahrenheit);
 		assert_eq!(round_2_digits(t.convert(Kelvin).temp), 237.75);
 		assert!(matches!(t.unit, Kelvin));
 	}
@@ -99,12 +99,12 @@ mod tests {
 	#[test]
 	fn k_to_f() {
 		let mut t = Temp::new(0.0, Kelvin);
-		assert_eq!(round_2_digits(t.convert(Farenheit).temp), -459.67);
-		assert!(matches!(t.unit, Farenheit));
+		assert_eq!(round_2_digits(t.convert(Fahrenheit).temp), -459.67);
+		assert!(matches!(t.unit, Fahrenheit));
 
 		let mut t = Temp::new(223.9, Kelvin);
-		assert_eq!(round_2_digits(t.convert(Farenheit).temp), -56.65);
-		assert!(matches!(t.unit, Farenheit));
+		assert_eq!(round_2_digits(t.convert(Fahrenheit).temp), -56.65);
+		assert!(matches!(t.unit, Fahrenheit));
 	}
 
 	fn round_2_digits(f: f64) -> f64 {

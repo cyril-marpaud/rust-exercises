@@ -8,7 +8,7 @@ pub enum TempUnit {
 	#[serde(alias = "C")]
 	Celsius,
 	#[serde(alias = "F")]
-	Farenheit,
+	Fahrenheit,
 	#[serde(alias = "K")]
 	Kelvin,
 }
@@ -20,7 +20,7 @@ impl Display for TempUnit {
 			"°{}",
 			match self {
 				TempUnit::Celsius => 'C',
-				TempUnit::Farenheit => 'F',
+				TempUnit::Fahrenheit => 'F',
 				TempUnit::Kelvin => 'K',
 			}
 		)

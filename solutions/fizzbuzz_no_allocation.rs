@@ -5,6 +5,6 @@ pub fn fizzbuzz(n: u32) -> Cow<'static, str> {
 		(0, 0) => Cow::Borrowed("fizzbuzz"),
 		(0, _) => Cow::Borrowed("fizz"),
 		(_, 0) => Cow::Borrowed("buzz"),
-		_ => Cow::Owned(format!("{n}")),
+		_ => Cow::Owned(n.to_string()),
 	}
 }

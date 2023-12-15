@@ -3,6 +3,6 @@ pub fn fizzbuzz(n: u32) -> String {
 		(0, 0) => String::from("fizzbuzz"),
 		(0, _) => String::from("fizz"),
 		(_, 0) => String::from("buzz"),
-		_ => format!("{n}"),
+		_ => n.to_string(),
 	}
 }

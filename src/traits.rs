@@ -43,6 +43,33 @@ fn comparison() {
 }
 
 #[test]
+fn debug_c() {
+	assert_eq!(
+		format!("{:?}", Temp::new(12.86, Celsius)),
+		"Temp { temp: 12.86, unit: Celsius }"
+	);
+	assert_eq!(format!("{:?}", Celsius), "Celsius");
+}
+
+#[test]
+fn debug_f() {
+	assert_eq!(
+		format!("{:?}", Temp::new(57.24, Fahrenheit)),
+		"Temp { temp: 57.24, unit: Fahrenheit }"
+	);
+	assert_eq!(format!("{:?}", Fahrenheit), "Fahrenheit");
+}
+
+#[test]
+fn debug_k() {
+	assert_eq!(
+		format!("{:?}", Temp::new(96.84, Kelvin)),
+		"Temp { temp: 96.84, unit: Kelvin }"
+	);
+	assert_eq!(format!("{:?}", Kelvin), "Kelvin");
+}
+
+#[test]
 fn default() {
 	assert_eq!(Temp::default(), Temp::new(0.0, Celsius));
 }

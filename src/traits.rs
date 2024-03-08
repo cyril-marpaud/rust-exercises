@@ -70,8 +70,13 @@ fn debug_k() {
 }
 
 #[test]
-fn default() {
+fn default_t() {
 	assert_eq!(Temp::default(), Temp::new(0.0, Celsius));
+}
+
+#[test]
+fn default_u() {
+	assert_eq!(TempUnit::default(), Celsius);
 }
 
 #[test]

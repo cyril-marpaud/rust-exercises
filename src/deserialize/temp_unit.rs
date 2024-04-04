@@ -1,6 +1,6 @@
 use std::fmt::Display;
 
-#[derive(Default)]
+#[derive(Debug, Default)]
 pub enum TempUnit {
 	#[default]
 	Celsius,

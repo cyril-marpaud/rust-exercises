@@ -4,7 +4,7 @@ use std::fmt::Display;
 
 use temp_unit::TempUnit::{self, *};
 
-#[derive(Default)]
+#[derive(Debug, Default)]
 pub struct Temp {
 	temp: f64,
 	unit: TempUnit,

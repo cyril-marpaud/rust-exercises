@@ -1,0 +1,10 @@
+What is the capital of France?|Paris|Lyon|Marseille|Bordeaux|1
+How many continents are there on Earth?|Five|Six|Seven|Eight|3
+Who wrote '1984'?|George Orwell|Aldous Huxley|Stephen King|Isaac Asimov|1
+Which chemical element has the symbol 'O'?|Osmium|Oxygen|Gold|Olivine|2
+What year did man first walk on the moon?|1965|1969|1972|1973|2
+Who painted the Mona Lisa?|Vincent Van Gogh|Pablo Picasso|Leonardo Da Vinci|Claude Monet|3
+What is the largest ocean in the world?|Atlantic|Indian|Arctic|Pacific|4
+What is the main ingredient of guacamole?|Tomato|Avocado|Onion|Chili|2
+Which country is known as the 'Land of the Rising Sun'?|India|China|Japan|South Korea|3
+Who composed the 9th Symphony?|Wolfgang Amadeus Mozart|Johann Sebastian Bach|Ludwig van Beethoven|Frédéric Chopin|3

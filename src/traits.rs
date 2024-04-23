@@ -76,7 +76,7 @@ fn default_t() {
 
 #[test]
 fn default_u() {
-	assert_eq!(TempUnit::default(), Celsius);
+	assert!(matches!(TempUnit::default(), Celsius));
 }
 
 #[test]

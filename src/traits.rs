@@ -32,17 +32,6 @@ impl Temp {
 }
 
 #[test]
-fn comparison() {
-	let t1 = Temp::new(2.0, Celsius);
-	let t2 = Temp::new(33.0, Fahrenheit);
-	let t3 = Temp::new(273.15, Kelvin);
-
-	assert!(t1 > t2);
-	assert!(t1 > t3);
-	assert!(t2 > t3);
-}
-
-#[test]
 fn debug_c() {
 	assert_eq!(
 		format!("{:?}", Temp::new(12.86, Celsius)),
@@ -70,16 +59,6 @@ fn debug_k() {
 }
 
 #[test]
-fn default_t() {
-	assert_eq!(Temp::default(), Temp::new(0.0, Celsius));
-}
-
-#[test]
-fn default_u() {
-	assert!(matches!(TempUnit::default(), Celsius));
-}
-
-#[test]
 fn display_c() {
 	assert_eq!(format!("{}", Temp::new(54.84, Celsius)), "54.84°C");
 	assert_eq!(format!("{}", Temp::new(-10.84, Celsius)), "-10.84°C");
@@ -98,6 +77,16 @@ fn display_k() {
 	assert_eq!(format!("{}", Temp::new(273.15, Kelvin)), "273.15K");
 	assert_eq!(format!("{}", Temp::new(-34.2, Kelvin)), "-34.2K");
 	assert_eq!(format!("{}", Kelvin), "K");
+}
+
+#[test]
+fn default_t() {
+	assert_eq!(Temp::default(), Temp::new(0.0, Celsius));
+}
+
+#[test]
+fn default_u() {
+	assert!(matches!(TempUnit::default(), Celsius));
 }
 
 #[test]
@@ -145,4 +134,15 @@ fn inequality() {
 	assert_ne!(t1, t2);
 	assert_ne!(t1, t3);
 	assert_ne!(t2, t3);
+}
+
+#[test]
+fn comparison() {
+	let t1 = Temp::new(2.0, Celsius);
+	let t2 = Temp::new(33.0, Fahrenheit);
+	let t3 = Temp::new(273.15, Kelvin);
+
+	assert!(t1 > t2);
+	assert!(t1 > t3);
+	assert!(t2 > t3);
 }

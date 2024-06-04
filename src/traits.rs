@@ -81,7 +81,9 @@ fn display_k() {
 
 #[test]
 fn default_t() {
-	assert_eq!(Temp::default(), Temp::new(0.0, Celsius));
+	let d = Temp::default();
+	assert_eq!(d.temp, 0.0);
+	assert!(matches!(d.unit, Celsius));
 }
 
 #[test]

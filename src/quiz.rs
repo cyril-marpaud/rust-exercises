@@ -13,25 +13,30 @@ fn read_questions(p: &str) -> Vec<Question> {
 	let file = File::open(p).unwrap();
 	let reader = BufReader::new(file);
 
-	reader
-		.lines()
-		.map(|line| {
-			let l = line.unwrap();
-			let parts: Vec<&str> = l.split('|').collect();
-			Question {
-				statement: parts[0].to_string(),
-				choices: parts[1..5].iter().map(|&s| s.to_string()).collect(),
-				answer: parts[5].parse::<usize>().unwrap() - 1,
-			}
-		})
-		.collect()
+	let mut questions = Vec::new();
+
+	for line in reader.lines() {
+		let l = line.unwrap();
+		let parts: Vec<&str> = l.split('|').collect();
+
+		let question = Question {
+			statement: parts[0].to_string(),
+			choices: parts[1..5].iter().map(|&s| s.to_string()).collect(),
+			answer: parts[5].parse::<usize>().unwrap() - 1,
+		};
+		questions.push(question);
+	}
+
+	questions
 }
 
 fn request_response(question: &Question) -> usize {
 	println!("{}", question.statement);
+
 	for (index, option) in question.choices.iter().enumerate() {
 		println!("{}: {}", index + 1, option);
 	}
+
 	let mut response = String::new();
 	io::stdin().read_line(&mut response).unwrap();
 	response.trim().parse::<usize>().unwrap() - 1
@@ -57,11 +62,13 @@ fn save_result(p: &str, score: usize) {
 }
 
 pub fn play() {
-	let score = read_questions("data/questions.txt")
-		.iter()
-		.map(|q| (q, request_response(q)))
-		.filter(|(q, r)| check_response(*r, q))
-		.count();
+	let mut score = 0;
+	for question in read_questions("data/questions.txt") {
+		let res = request_response(&question);
+		if check_response(res, &question) {
+			score += 1;
+		}
+	}
 
 	println!("Your score is: {}", score);
 	save_result("data/results.txt", score);

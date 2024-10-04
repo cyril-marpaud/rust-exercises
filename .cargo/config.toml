@@ -1,0 +1,2 @@
+[alias]
+guide = "doc --open --no-deps --lib --document-private-items"

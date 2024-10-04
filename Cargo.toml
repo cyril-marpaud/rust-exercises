@@ -1,9 +1,29 @@
-[package]
-name = "rust_training"
-version = "0.1.0"
+[workspace]
+members = [
+	# Exercises
+	"e01_fibonacci",
+	"e02_fizzbuzz",
+	"e03_temperature",
+	"e04_modularization",
+	"e05_quiz",
+	"e06_traits",
+	"e07_iterator",
+	# Crates
+	"c_serde",
+	# Projects
+]
+resolver = "2"
+
+[workspace.package]
+authors = ["Cyril Marpaud"]
+categories = ["rust-patterns"]
+description = "Rust exercises for training sessions"
+documentation = "https://gitlab.com/cmp-trainings/rust/rust-exercises/-/blob/main/README.md"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
-md5 = "0.7.0"
+homepage = "https://gitlab.com/cmp-trainings/rust/rust-exercises"
+keywords = ["training", "rust", "exercises"]
+license = "CC-BY-NC-SA-4.0"
+publish = false
+readme = "README.md"
+repository = "https://gitlab.com/cmp-trainings/rust/rust-exercises"
+version = "0.1.0"

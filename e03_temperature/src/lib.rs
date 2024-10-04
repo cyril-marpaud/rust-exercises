@@ -69,7 +69,10 @@ mod tests {
 	#[test]
 	fn k_to_f() {
 		let mut t = Temp::new(0.0, TempUnit::Kelvin);
-		assert_eq!(round_2_digits(t.convert(TempUnit::Fahrenheit).temp), -459.67);
+		assert_eq!(
+			round_2_digits(t.convert(TempUnit::Fahrenheit).temp),
+			-459.67
+		);
 		assert!(matches!(t.unit, TempUnit::Fahrenheit));
 
 		let mut t = Temp::new(223.9, TempUnit::Kelvin);

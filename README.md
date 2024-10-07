@@ -6,13 +6,17 @@ Each exercise requires one to uncomment a specific module in `lib.rs`. **Don't f
 - C - Crate-specific exercises: Medium exercises related to specific crates.
 - P - Projects: Advanced exercises involving multiple crates.
 
-## Generate the guide
+## Generating the guide
 
-Run `cargo guide` in any exercise folder to generate and open its documentation, or run it in the root directory to document them all.
+Run `cargo guide` in any exercise folder to generate and open its documentation in a browser, or run it in the root directory to document them all.
 
-```bash
-cargo guide
-```
+This is a cargo alias that has been set up in `.cargo/config.toml`.
+
+## Checking your solutions
+
+Most exercises have a test suite that you can run with `cargo test`.
+
+Run it with the `-- --nocapture` flag to see the output of your code.
 
 ## Todo
 

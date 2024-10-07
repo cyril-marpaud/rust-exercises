@@ -2,7 +2,7 @@
 
 #[test]
 fn zero() {
-	assert_eq!(fizzbuzz(0), "fizzbuzz");
+	assert_eq!(fizzbuzz(0), "FizzBuzz");
 }
 
 #[test]
@@ -12,12 +12,12 @@ fn one() {
 
 #[test]
 fn three() {
-	assert_eq!(fizzbuzz(3), "fizz");
+	assert_eq!(fizzbuzz(3), "Fizz");
 }
 
 #[test]
 fn five() {
-	assert_eq!(fizzbuzz(5), "buzz");
+	assert_eq!(fizzbuzz(5), "Buzz");
 }
 
 #[test]
@@ -27,12 +27,12 @@ fn seven() {
 
 #[test]
 fn twelve() {
-	assert_eq!(fizzbuzz(12), "fizz");
+	assert_eq!(fizzbuzz(12), "Fizz");
 }
 
 #[test]
 fn fifteen() {
-	assert_eq!(fizzbuzz(15), "fizzbuzz");
+	assert_eq!(fizzbuzz(15), "FizzBuzz");
 }
 
 #[test]
@@ -42,10 +42,10 @@ fn seventeen() {
 
 #[test]
 fn twenty() {
-	assert_eq!(fizzbuzz(20), "buzz");
+	assert_eq!(fizzbuzz(20), "Buzz");
 }
 
 #[test]
 fn thirty() {
-	assert_eq!(fizzbuzz(30), "fizzbuzz");
+	assert_eq!(fizzbuzz(30), "FizzBuzz");
 }

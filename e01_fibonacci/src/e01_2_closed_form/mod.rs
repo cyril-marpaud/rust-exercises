@@ -1,7 +1,7 @@
 // fn fibonacci() {}
 
 #[test]
-fn zero() {
+fn e01_1_zero() {
 	assert_eq!(fibonacci(0), 0);
 }
 

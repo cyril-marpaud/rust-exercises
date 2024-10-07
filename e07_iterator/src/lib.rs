@@ -1,27 +1,10 @@
-pub struct Fibonacci;
+//! - Uncomment the `iterator` module
+//! - Create a struct to transform `Fibonacci`
+//! - Implement the necessary traits
+//!   - First the [`IntoIterator`](https://doc.rust-lang.org/std/iter/trait.IntoIterator.html) trait for `Fibonacci`
+//!     use the solution from `fibonacci_closed_form.rs`
+//!   - Then the [`Iterator`](https://doc.rust-lang.org/std/iter/trait.Iterator.html) trait
+//! - Run the tests
+//!   `cargo test -- iterator`
 
-#[test]
-fn iterator() {
-	let mut i = Fibonacci.into_iter();
-
-	assert_eq!(i.next(), Some(0));
-	assert_eq!(i.next(), Some(1));
-	assert_eq!(i.next(), Some(1));
-	assert_eq!(i.next(), Some(2));
-	assert_eq!(i.next(), Some(3));
-	assert_eq!(i.next(), Some(5));
-	assert_eq!(i.next(), Some(8));
-	assert_eq!(i.next(), Some(13));
-	assert_eq!(i.next(), Some(21));
-	assert_eq!(i.next(), Some(34));
-	assert_eq!(i.next(), Some(55));
-	assert_eq!(i.next(), Some(89));
-	assert_eq!(i.next(), Some(144));
-	assert_eq!(i.next(), Some(233));
-	assert_eq!(i.next(), Some(377));
-	assert_eq!(i.next(), Some(610));
-	assert_eq!(i.next(), Some(987));
-	assert_eq!(i.next(), Some(1597));
-	assert_eq!(i.next(), Some(2584));
-	assert_eq!(i.next(), Some(4181));
-}
+// mod e07_1_iterator;

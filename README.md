@@ -27,8 +27,6 @@ Run it with the `-- --nocapture` flag to see the output of your code.
    - update workspace.package.documentation
 - move all temp_unit modules into main module
 - add more exercises/crates/projects
-   - [PyO3](docs.rs/pyo3)
-   - [Prost!](docs.rs/prost)
    - [flatbuffers](docs.rs/flatbuffers)
    - [slint](docs.rs/slint)
    - [neon](docs.rs/neon)

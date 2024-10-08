@@ -1,4 +1,5 @@
 [workspace]
+exclude = ["c_pyo3/rfp"]
 members = [
 	# Exercises
 	"e01_fibonacci",
@@ -9,6 +10,8 @@ members = [
 	"e06_traits",
 	"e07_iterator",
 	# Crates
+	"c_pyo3/rust_from_python",
+	"c_pyo3/python_from_rust",
 	"c_serde",
 	# Projects
 ]

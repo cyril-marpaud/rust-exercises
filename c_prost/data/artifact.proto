@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package artifacts;
+
+message Artifact {
+    string name = 1;
+    string origin = 2;
+    string category = 3;
+    int32 year_discovered = 4;
+}

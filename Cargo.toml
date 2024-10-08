@@ -10,6 +10,7 @@ members = [
 	"e06_traits",
 	"e07_iterator",
 	# Crates
+	"c_flatbuffers",
 	"c_prost",
 	"c_pyo3/rust_from_python",
 	"c_pyo3/python_from_rust",

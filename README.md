@@ -27,7 +27,6 @@ Run it with the `-- --nocapture` flag to see the output of your code.
    - update workspace.package.documentation
 - move all temp_unit modules into main module
 - add more exercises/crates/projects
-   - [flatbuffers](docs.rs/flatbuffers)
    - [slint](docs.rs/slint)
    - [neon](docs.rs/neon)
    - [Impl Snake for Micro:bits](https://gitlab.com/cyril-marpaud/impl_snake_for_microbit)

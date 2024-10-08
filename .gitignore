@@ -1,2 +1,5 @@
+.venv/
+rfp/
 target/
+
 Cargo.lock

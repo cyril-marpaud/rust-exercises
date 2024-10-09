@@ -39,3 +39,13 @@ fn thirty() {
 fn forty() {
 	assert_eq!(fibonacci(40), 102334155);
 }
+
+#[test]
+fn fifty() {
+	assert_eq!(fibonacci(50), 12586269025);
+}
+
+#[test]
+fn seventy() {
+	assert_eq!(fibonacci(70), 190392490709135);
+}

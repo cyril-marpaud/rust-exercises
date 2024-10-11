@@ -60,7 +60,7 @@
 //! <details>
 //! <summary>Solution</summary>
 //!
-//! ```rust
+//! ```no_run
 //! prost_build::compile_protos(&["data/artifact.proto"], &["data/"]).unwrap();
 //! ```
 //!
@@ -75,7 +75,7 @@
 //! file) needs to be included in your project at compile time. Use the `include!` macro to pull in
 //! the generated code from `OUT_DIR`:
 //!
-//! ```rust
+//! ```no_run
 //! include!(concat!(env!("OUT_DIR"), "/artifacts.rs"));
 //! ```
 //!
@@ -95,7 +95,7 @@
 //! <details>
 //! <summary>Solution</summary>
 //!
-//! ```rust
+//! ```no_run
 //! use prost::Message;
 //! use std::{
 //!   fs::File,
@@ -138,7 +138,7 @@
 //! <details>
 //! <summary>Solution</summary>
 //!
-//! ```rust
+//! ```no_run
 //! use c_prost::c_prost_1_deserialize::deserialize_artifacts;
 //! let artifacts = deserialize_artifacts("data/artifacts.bin");
 //! println!("artifacts: {artifacts:#?}");

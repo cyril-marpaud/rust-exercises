@@ -59,4 +59,4 @@
 //! - [`println!`](https://doc.rust-lang.org/std/macro.println.html): Prints a string to the console, with a newline.
 
 // mod e02_1_imperative;
-pub mod e02_2_functional;
+// pub mod e02_2_functional;

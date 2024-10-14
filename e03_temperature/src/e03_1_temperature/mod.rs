@@ -1,11 +1,11 @@
-// struct Temp
+pub struct Temp {}
 
-// enum TempUnit
+pub enum TempUnit {}
 
-// impl Temp {
-// 	fn new() {}
-// 	fn convert() {}
-// }
+impl Temp {
+	pub fn new() {}
+	pub fn convert() {}
+}
 
 #[cfg(test)]
 mod tests {

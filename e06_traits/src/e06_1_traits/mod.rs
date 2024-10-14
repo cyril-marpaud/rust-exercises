@@ -1,6 +1,10 @@
-mod temp_unit;
+use TempUnit::*;
 
-use temp_unit::TempUnit::{self, *};
+pub enum TempUnit {
+	Celsius,
+	Fahrenheit,
+	Kelvin,
+}
 
 pub struct Temp {
 	temp: f64,

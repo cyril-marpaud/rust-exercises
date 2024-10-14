@@ -37,4 +37,4 @@
 //!   find and display the names and temperatures of the hottest and coldest cities
 //! - Update the tests to check for the correct results
 
-// mod deserialize;
+pub mod deserialize;

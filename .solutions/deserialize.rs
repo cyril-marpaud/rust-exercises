@@ -1,9 +1,31 @@
-mod temp_unit;
-
-use std::fmt::Display;
-
 use serde::Deserialize;
-use temp_unit::TempUnit::{self, *};
+use std::fmt::Display;
+use TempUnit::*;
+
+#[derive(Default, Deserialize)]
+pub enum TempUnit {
+	#[default]
+	#[serde(alias = "C")]
+	Celsius,
+	#[serde(alias = "F")]
+	Fahrenheit,
+	#[serde(alias = "K")]
+	Kelvin,
+}
+
+impl Display for TempUnit {
+	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+		write!(
+			f,
+			"{}",
+			match self {
+				TempUnit::Celsius => "°C",
+				TempUnit::Fahrenheit => "°F",
+				TempUnit::Kelvin => "K",
+			}
+		)
+	}
+}
 
 #[derive(Default, Deserialize)]
 pub struct Temp {

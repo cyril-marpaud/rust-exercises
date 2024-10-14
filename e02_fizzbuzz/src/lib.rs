@@ -58,5 +58,5 @@
 //! - [`format!`](https://doc.rust-lang.org/std/macro.format.html): Writes formatted text to a string.
 //! - [`println!`](https://doc.rust-lang.org/std/macro.println.html): Prints a string to the console, with a newline.
 
-// mod e02_1_imperative;
+// pub mod e02_1_imperative;
 // pub mod e02_2_functional;

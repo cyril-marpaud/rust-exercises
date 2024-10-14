@@ -1,5 +1,5 @@
-struct Fibonacci;
-struct FibIter(u32);
+pub struct Fibonacci;
+pub struct FibIter(u32);
 
 impl Fibonacci {
 	pub fn fibonacci(n: u32) -> u64 {

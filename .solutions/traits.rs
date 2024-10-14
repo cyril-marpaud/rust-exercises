@@ -1,6 +1,6 @@
 use std::fmt::Display;
 
-use temp_unit::TempUnit*;
+use TempUnit*;
 
 #[derive(Debug, Default)]
 pub enum TempUnit {

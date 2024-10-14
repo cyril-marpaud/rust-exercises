@@ -20,13 +20,10 @@ Run it with the `-- --nocapture` flag to see the output of your code.
 
 ## Todo
 
-- update slides to reflect new arch
-- document each exercise
-   - integrate solutions into their dedicated crate
+- integrate solutions into their dedicated crate
 - auto-publish documentation to gitlab pages
    - update workspace.package.documentation
-- move all temp_unit modules into main module
 - add more exercises/crates/projects
    - [slint](docs.rs/slint)
    - [neon](docs.rs/neon)
-   - [Impl Snake for Micro:bits](https://gitlab.com/cyril-marpaud/impl_snake_for_microbit)
+   - [Impl Snake for Micro:bit](https://gitlab.com/cyril-marpaud/impl_snake_for_microbit)

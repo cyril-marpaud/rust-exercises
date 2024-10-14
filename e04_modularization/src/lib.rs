@@ -47,4 +47,4 @@
 //!
 //! Use these Rust Analyzer features as much as possible to automate these tasks, rather than doing them all manually, which enhances efficiency and reduces the potential for errors.
 
-// mod e04_1_modularization;
+// pub mod e04_1_modularization;

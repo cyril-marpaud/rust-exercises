@@ -1,4 +1,4 @@
-// fn fizzbuzz() {}
+pub fn fizzbuzz() {}
 
 #[test]
 fn zero() {

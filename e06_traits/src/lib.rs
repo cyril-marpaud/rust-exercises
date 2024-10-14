@@ -48,4 +48,4 @@
 //! - Use Rust Analyzer to speed up trait implementation:
 //!   - Click the yellow light bulb (💡) or use **`ctrl`**+**`.`** when a trait is not fully implemented to bring up the quick fixes menu.
 
-// pub mod e06_1_traits;
+pub mod e06_1_traits;

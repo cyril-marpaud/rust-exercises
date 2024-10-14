@@ -1,4 +1,4 @@
-// fn fibonacci() {}
+pub fn fibonacci() {}
 
 #[test]
 fn e01_1_zero() {

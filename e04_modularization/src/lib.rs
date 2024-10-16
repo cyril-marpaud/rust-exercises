@@ -24,7 +24,7 @@
 //!
 //! 2. Inside the `temp_unit` module, use `pub use TempUnit::*;` to export the variants directly.
 //!
-//! 3. Create a `prelude` module at the top level of your library. In this module, re-export `Temp` and the variants from `temp_unit`.
+//! 3. Create a `prelude` module at the top level of your library. In this module, re-export `Temp` and `TempUnit`'s variants.
 //!
 //!    <details>
 //!    <summary>Why use <code>pub</code> in a prelude module?</summary>

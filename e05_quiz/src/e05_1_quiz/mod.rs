@@ -39,11 +39,11 @@ fn request_response(question: &Question) -> usize {
 
 	let mut response = String::new();
 	io::stdin().read_line(&mut response).unwrap();
-	response.trim().parse::<usize>().unwrap() - 1
+	response.trim().parse::<usize>().unwrap()
 }
 
 fn check_response(user_response: usize, question: &Question) -> bool {
-	println!("Chosen response: {}", question.choices[user_response]);
+	println!("Chosen response: {}", question.choices[user_response - 1]);
 	let correct = user_response == question.answer;
 	match correct {
 		true => println!("Correct!"),

@@ -34,7 +34,7 @@ fn request_response(question: &Question) -> usize {
 	println!("{}", question.statement);
 
 	for (index, option) in question.choices.iter().enumerate() {
-		println!("{}: {}", index + 1, option);
+		println!("{}: {option}", index + 1);
 	}
 
 	let mut response = String::new();
@@ -70,6 +70,6 @@ pub fn play() {
 		}
 	}
 
-	println!("Your score is: {}", score);
+	println!("Your score is: {score}");
 	save_result("data/results.txt", score);
 }

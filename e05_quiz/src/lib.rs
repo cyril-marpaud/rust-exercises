@@ -1,81 +1,79 @@
 //! # e05_1_quiz - Error Handling
 //!
 //! ## Overview
-//! This exercise enhances the quiz application by incorporating structured error handling. The aim is to ensure the application behaves predictably under various error conditions and avoids program panics.
+//! This exercise enhances the quiz application by incorporating structured error handling, ensuring that the application behaves predictably under various error conditions and avoids program panics.
 //!
-//! ## Step 1: Setting Up Error Handling
-//! - Add the [`thiserror`](https://docs.rs/thiserror) crate to handle custom errors.
+//! ## Task
+//! You are tasked with refactoring the existing quiz application to use robust error handling practices. This involves using the `thiserror` crate to define a custom error type and modifying all functions to return `Result` instead of using panics.
 //!
-//!   <details>
-//!   <summary>How to add <code>thiserror</code> via Cargo</summary>
+//! ## Instructions
+//! - **Error Handling Setup:**
+//!   - Add the [`thiserror`](https://docs.rs/thiserror) crate to handle custom errors.
 //!
-//!   ```bash
-//!   cargo add thiserror
-//!   ```
-//!   </details>
+//!     <details>
+//!     <summary>Add <code>thiserror</code> to your Cargo.toml</summary>
 //!
-//! - Define a comprehensive error type using `thiserror` to encapsulate potential failure points.
+//!     ```bash
+//!     cargo add thiserror
+//!     ```
+//!     </details>
 //!
-//!   <details>
-//!   <summary>Defining the <code>QuizError</code> type</summary>
+//!   - Define a comprehensive error type using `thiserror` to encapsulate potential failure points.
 //!
-//!   ```ignore
-//!   #[derive(Error, Debug)]
-//!   pub enum QuizError {
-//!       #[error("file open error: {0} ({1})")]
-//!       FileOpen(String, #[source] io::Error),
-//!       ...
-//!   }
-//!   ```
-//!   </details>
+//!     <details>
+//!     <summary>Defining the <code>QuizError</code> type</summary>
 //!
-//! ## Step 2: Refactoring Functions to Return `Result`
-//! - Update all functions to return `Result`, replacing `unwrap()` with proper error handling.
+//!     ```ignore
+//!     #[derive(Error, Debug)]
+//!     pub enum QuizError {
+//!         #[error("file open error: {0} ({1})")]
+//!         FileOpen(String, #[source] io::Error),
+//!         ...
+//!     }
+//!     ```
+//!     </details>
 //!
-//!   <details>
-//!   <summary>Example of refactoring a function to return Result</summary>
+//! - **Refactoring Functions:**
+//!   - Update all functions to return `Result`.
+//!   - Replace `unwrap()` with `map_err()` to convert various errors into your own type.
+//!   - Use the propagation operator to unwrap or propagate those `Result`s.
 //!
-//!   ```ignore
-//!   fn read_questions(p: &str) -> Result<Vec<Question>, QuizError> {
-//!       let file = File::open(p).map_err(|e| QuizError::FileOpen(p.to_string(), e))?;
-//!       ...
-//!   }
-//!   ```
-//!   </details>
+//!     <details>
+//!     <summary>Example of refactoring a function to return Result</summary>
 //!
-//! ## Step 3: Implementing Error Handling in User Interactions
-//! - Ensure that all user input functions handle errors gracefully, providing feedback and retry mechanisms where appropriate.
+//!     ```ignore
+//!     fn read_questions(p: &str) -> Result<Vec<Question>, QuizError> {
+//!         let file = File::open(p).map_err(|e| QuizError::FileOpen(p.to_string(), e))?;
+//!         ...
+//!     }
+//!     ```
+//!     </details>
 //!
-//!   <details>
-//!   <summary>Handling user input errors</summary>
+//! - **Implement Robust Array Element Access:**
+//!   - Replace direct array indexing with the `.get()` method to safely access elements.
+//!   - Combine it with `ok_or` to convert the `Option` into a `Result`.
+//!   - Propagate the error using the `?` operator as well.
 //!
-//!   ```ignore
-//!   fn request_response(question: &Question) -> Result<usize, QuizError> {
-//!       println!("{}", question.statement);
-//!       for (index, choice) in question.choices.iter().enumerate() {
-//!           println!("{}: {}", index + 1, choice);
-//!       }
-//!       let mut response = String::new();
-//!       io::stdin().read_line(&mut response).map_err(QuizError::FileRead)?;
-//!       response.trim().parse().map_err(|e| QuizError::ParseError(response, e))
-//!   }
-//!   ```
-//!   </details>
+//! - **Implement Robust Operations:**
+//!   - Replace each arithmetic operation with a safe method and propagate the errors as well.
 //!
-//! ## Bonus Step: Testing Error Handling
-//! - Write tests to verify that the error handling works as expected, particularly that the application does not panic and provides meaningful error messages.
+//! - **User Interaction Errors:**
+//!   - Ensure that all user input functions handle errors gracefully, providing feedback and retry mechanisms where appropriate.
 //!
-//!   <details>
-//!   <summary>Writing tests for error handling</summary>
+//!     <details>
+//!     <summary>Handling user input errors</summary>
 //!
-//!   ```ignore
-//!   #[test]
-//!   fn test_invalid_input() {
-//!       // Example test to check handling of invalid user input
-//!       let result = request_response(&invalid_question);
-//!       assert!(result.is_err());
-//!   }
-//!   ```
-//!   </details>
+//!     ```ignore
+//!     fn request_response(question: &Question) -> Result<usize, QuizError> {
+//!         println!("{}", question.statement);
+//!         for (index, choice) in question.choices.iter().enumerate() {
+//!             println!("{}: {}", index + 1, choice);
+//!         }
+//!         let mut response = String::new();
+//!         io::stdin().read_line(&mut response).map_err(QuizError::FileRead)?;
+//!         response.trim().parse().map_err(|e| QuizError::ParseError(response, e))
+//!     }
+//!     ```
+//!     </details>
 
 pub mod e05_1_quiz;

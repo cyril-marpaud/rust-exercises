@@ -53,7 +53,7 @@
 //! - [`chain`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.chain): Combines two iterators into one sequence.
 //! - [`zip`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.zip): Pairs up elements from two iterators.
 //! - [`enumerate`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.enumerate): Transforms an iterator into an iterator of tuples (index, element).
-//! - [`for_each`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.for_each): Calls a function on each element of an iterator.
+//! - [`map`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.map): Creates an iterator which calls a closure on each element.
 //! - [`to_string`](https://doc.rust-lang.org/std/string/trait.ToString.html): Converts a type to its string representation.
 //! - [`format!`](https://doc.rust-lang.org/std/macro.format.html): Writes formatted text to a string.
 //! - [`println!`](https://doc.rust-lang.org/std/macro.println.html): Prints a string to the console, with a newline.

@@ -9,8 +9,10 @@ use thiserror::Error;
 pub enum QuizError {
 	#[error("Could not open file: {0} ({1})")]
 	FileOpen(String, #[source] io::Error),
-	#[error("File is malformed or empty")]
-	MalformedFile,
+	#[error("The question's answer is invalid: {0} -> {1}")]
+	InvalidAnswer(String, String),
+	#[error("Question is malformed: {0}")]
+	MalformedQuestion(String),
 	#[error("Failed to read line")]
 	LineReadError(#[source] io::Error),
 	#[error("Failed to parse the correct answer: {0} ({1})")]
@@ -44,16 +46,20 @@ fn read_questions(p: &str) -> Result<Vec<Question>, QuizError> {
 
 			let parts: Vec<&str> = l.split('|').collect();
 			if parts.len() < 6 {
-				return Err(QuizError::MalformedFile);
+				return Err(QuizError::MalformedQuestion(l));
 			}
 
 			Ok(Question {
 				statement: parts[0].to_string(),
-				choices: parts[1..5].iter().map(|&s| s.to_string()).collect(),
+				choices: parts[1..=4].iter().map(|&s| s.to_string()).collect(),
 				answer: parts[5]
 					.parse::<usize>()
 					.map_err(|e| QuizError::ParseAnswerError(parts[5].to_string(), e))?
-					- 1,
+					.checked_sub(1)
+					.ok_or(QuizError::InvalidAnswer(
+						parts[0].to_string(),
+						parts[5].to_string(),
+					))?,
 			})
 		})
 		.collect()
@@ -77,13 +83,18 @@ fn request_response(question: &Question) -> Result<usize, QuizError> {
 }
 
 fn check_response(user_response: usize, question: &Question) -> Result<bool, QuizError> {
-	if user_response < 1 || user_response > question.choices.len() {
-		return Err(QuizError::ResponseOutOfRange(user_response));
-	}
+	let array_response = user_response
+		.checked_sub(1)
+		.ok_or(QuizError::ResponseOutOfRange(user_response))?;
 
-	println!("Chosen response: {}", question.choices[user_response - 1]);
+	let str_response = question
+		.choices
+		.get(array_response)
+		.ok_or(QuizError::ResponseOutOfRange(user_response))?;
 
-	let correct = user_response == question.answer;
+	println!("Chosen response: {str_response}");
+
+	let correct = array_response == question.answer;
 	match correct {
 		true => println!("Correct!"),
 		false => println!(
@@ -102,12 +113,10 @@ fn save_result(p: &str, score: usize) -> Result<(), QuizError> {
 }
 
 pub fn play() -> Result<(), QuizError> {
-	let questions = read_questions("data/questions.txt")?;
-
 	let mut score = 0;
-	for q in questions {
-		let r = request_response(&q)?;
-		if check_response(r, &q)? {
+	for question in read_questions("data/questions.txt")? {
+		let res = request_response(&question)?;
+		if check_response(res, &question)? {
 			score += 1;
 		}
 	}

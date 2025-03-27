@@ -17,10 +17,12 @@
 //! Use the closed-form (Binet's formula) to compute Fibonacci numbers more efficiently.
 //!
 //! ## Reference
-//! The closed-form expression for the Fibonacci sequence, also known as Binet's formula, is detailed here:
-//! <https://en.wikipedia.org/wiki/Fibonacci_sequence#Closed-form_expression>
+//! The closed-form expression for the Fibonacci sequence, also known as Binet's formula, is defined as follows:
 //!
-//! It utilizes the formula: F(n) = round((phi^n - psi^n) / sqrt(5)), where phi = (1 + sqrt(5)) / 2 and psi = (1 - sqrt(5)) / 2.
+//! $$
+//!   F(n) = \mathrm{round}\left( \frac{\varphi^n - \psi^n}{\sqrt{5}} \right) \quad
+//!   \text{où} \quad \varphi = \frac{1 + \sqrt{5}}{2} \quad et \quad \psi = \frac{1 - \sqrt{5}}{2}
+//! $$
 //!
 //! ## Task
 //! Implement a function `fib_closed_form` that calculates the n-th Fibonacci number using the closed-form expression.

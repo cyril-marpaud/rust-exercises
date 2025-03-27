@@ -5,7 +5,7 @@
 //!
 //! ## Task
 //! The `Fibonacci` struct is initially empty, and your task is to transform it into a functional iterator that can generate Fibonacci numbers:
-//! - Create a struct, `FibIter`, to hold the iteration state. You have two choices for managing the state:
+//! - Create a struct, `FibIter`, to hold the iteration state. You have at least two choices for managing the state:
 //!   - **Index-Based:** Store only the current index of the sequence and calculate each Fibonacci number using the closed-form expression known as Binet's formula.
 //!   - **Last Two Elements:** Store the last two numbers of the sequence to compute the next number, which is more efficient than recalculating each number from scratch.
 //! - Implement the necessary traits:

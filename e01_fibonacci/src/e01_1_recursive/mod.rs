@@ -39,3 +39,11 @@ fn thirty() {
 fn forty() {
 	assert_eq!(fibonacci(40), 102334155);
 }
+
+#[test]
+fn rand() {
+	(0..10).for_each(|_| {
+		let r = rand::random_range(2..30);
+		assert_eq!(fibonacci(r), fibonacci(r - 1) + fibonacci(r - 2));
+	});
+}

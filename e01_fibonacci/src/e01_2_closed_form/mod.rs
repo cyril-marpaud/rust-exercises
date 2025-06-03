@@ -49,3 +49,11 @@ fn fifty() {
 fn seventy() {
 	assert_eq!(fibonacci(70), 190392490709135);
 }
+
+#[test]
+fn rand() {
+	(0..10).for_each(|_| {
+		let r = rand::random_range(2..70);
+		assert_eq!(fibonacci(r), fibonacci(r - 1) + fibonacci(r - 2));
+	});
+}

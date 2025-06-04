@@ -22,7 +22,7 @@ fn read_questions(p: &str) -> Vec<Question> {
 		let question = Question {
 			statement: parts[0].to_string(),
 			choices: parts[1..5].iter().map(|&s| s.to_string()).collect(),
-			answer: parts[5].parse::<usize>().unwrap() - 1,
+			answer: parts[5].parse::<usize>().unwrap(),
 		};
 		questions.push(question);
 	}

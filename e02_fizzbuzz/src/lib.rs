@@ -38,16 +38,16 @@
 //! <details>
 //! <summary>Sequence Generation Tip</summary>
 //!
-//! The sequence for generating "Fizz" every third value is created by using `repeat` to generate empty strings for placeholders, `take` to limit it to two iterations, and `once` to insert "Fizz" after every two empty strings. This sequence is then made infinite with `cycle`.
+//! The sequence for generating "Fizz" every third value is created by using `repeat_n` to generate empty strings for placeholders, `take` to limit it to two iterations, and `once` to insert "Fizz" after every two empty strings. This sequence is then made infinite with `cycle`.
 //! ```ignore
-//! let f = repeat("").take(2).chain(once("Fizz")).cycle();
+//! let f = repeat_n("", 2).chain(once("Fizz")).cycle();
 //! ```
 //!
 //! </details>
 //!
 //! ## Tools
 //! - [`once`](https://doc.rust-lang.org/std/iter/fn.once.html): Creates an iterator that yields an item exactly once.
-//! - [`repeat`](https://doc.rust-lang.org/std/iter/fn.repeat.html): Generates an infinite iterator that repeats a given value.
+//! - [`repeat_n`](https://doc.rust-lang.org/std/iter/fn.repeat_n.html): Generates an iterator that repeats a given value `n` times.
 //! - [`cycle`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.cycle): Repeats an iterator endlessly.
 //! - [`take`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.take): Creates an iterator that yields its first `n` elements.
 //! - [`chain`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.chain): Combines two iterators into one sequence.

@@ -16,6 +16,8 @@ members = [
 	"c_pyo3/python_from_rust",
 	"c_serde",
 	# Projects
+	# Misc
+	"xtask",
 ]
 # Run global cargo commands only in those directories
 default-members = [

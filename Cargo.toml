@@ -17,6 +17,17 @@ members = [
 	"c_serde",
 	# Projects
 ]
+# Run global cargo commands only in those directories
+default-members = [
+	"e01_fibonacci",
+	"e02_fizzbuzz",
+	"e03_temperature",
+	"e04_modularization",
+	"e05_quiz",
+	"e06_traits",
+	"e07_iterator",
+	"c_serde",
+]
 resolver = "2"
 
 [workspace.package]

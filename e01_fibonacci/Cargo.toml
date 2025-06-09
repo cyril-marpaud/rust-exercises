@@ -14,5 +14,5 @@ readme.workspace = true
 repository.workspace = true
 version.workspace = true
 
-[dependencies]
+[dev-dependencies]
 rand = "0.9.1"

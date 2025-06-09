@@ -14,5 +14,5 @@ readme.workspace = true
 repository.workspace = true
 version.workspace = true
 
-[dependencies]
+[dev-dependencies]
 md5 = "0.7"

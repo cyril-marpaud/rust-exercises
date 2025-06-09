@@ -1,4 +1,4 @@
-mod prelude;
+pub mod prelude;
 mod temp_unit;
 
 use temp_unit::TempUnit::{self, *};

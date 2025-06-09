@@ -1,5 +1,6 @@
 [alias]
 guide = "doc --open --no-deps --lib --document-private-items"
+xtask = "run --package xtask"
 
 [build]
 rustdocflags = ["--html-in-header", "assets/katex-header.html"]

@@ -76,4 +76,4 @@
 //!     ```
 //!     </details>
 
-pub mod e05_1_quiz;
+// pub mod e05_1_quiz;

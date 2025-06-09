@@ -73,3 +73,43 @@ pub fn play() {
 	println!("Your score is: {score}");
 	save_result("data/results.txt", score);
 }
+
+#[test]
+fn no_unwrap_or_expect() {
+	use std::{env::current_dir, fs::read_to_string};
+	let last_line = line!() - 4;
+
+	let mut file_path = current_dir().unwrap().parent().unwrap().to_path_buf();
+	file_path.push(file!());
+
+	let content = read_to_string(file_path)
+		.expect("Failed to read source file")
+		.lines()
+		.take(last_line as usize)
+		.collect::<String>();
+
+	let forbidden = ["unwrap(", "expect("];
+
+	forbidden.iter().for_each(|f| {
+		assert!(!content.contains(f));
+	});
+}
+
+#[test]
+fn thiserror_in_deps() {
+	use std::fs::read_to_string;
+	use toml::Value;
+
+	let cargo_toml = read_to_string("Cargo.toml").expect("Failed to read Cargo.toml");
+	let cargo: Value = toml::from_str(&cargo_toml).expect("Failed to parse Cargo.toml as TOML");
+
+	let deps = cargo
+		.get("dependencies")
+		.and_then(|v| v.as_table())
+		.expect("[dependencies] section missing or malformed");
+
+	assert!(
+		deps.contains_key("thiserror"),
+		"The 'thiserror' dependency is missing from [dependencies]"
+	);
+}

@@ -1,5 +1,4 @@
 [workspace]
-exclude = ["c_pyo3/rfp"]
 members = [
 	# Exercises
 	"e01_fibonacci",

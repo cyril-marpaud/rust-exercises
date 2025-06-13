@@ -31,7 +31,7 @@ default-members = [
 	"e07_iterator",
 	"c_serde",
 ]
-resolver = "2"
+resolver = "3"
 
 [workspace.package]
 authors = ["Cyril Marpaud"]

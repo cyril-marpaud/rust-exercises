@@ -1,5 +1,4 @@
 [workspace]
-# Run global cargo commands only in those directories
 default-members = [
 	"crates/c_serde",
 	"exercises/e01_fibonacci",

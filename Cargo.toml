@@ -14,6 +14,8 @@ members = [
 	"c_prost",
 	"c_pyo3/rust_from_python",
 	"c_pyo3/python_from_rust",
+	"c_reqwest",
+	"c_reqwest/server",
 	"c_serde",
 	# Projects
 	# Misc

@@ -1,35 +1,31 @@
 [workspace]
-members = [
-	# Exercises
-	"e01_fibonacci",
-	"e02_fizzbuzz",
-	"e03_temperature",
-	"e04_modularization",
-	"e05_quiz",
-	"e06_traits",
-	"e07_iterator",
-	# Crates
-	"c_flatbuffers",
-	"c_prost",
-	"c_pyo3/rust_from_python",
-	"c_pyo3/python_from_rust",
-	"c_reqwest",
-	"c_reqwest/server",
-	"c_serde",
-	# Projects
-	# Misc
-	"xtask",
-]
 # Run global cargo commands only in those directories
 default-members = [
-	"e01_fibonacci",
-	"e02_fizzbuzz",
-	"e03_temperature",
-	"e04_modularization",
-	"e05_quiz",
-	"e06_traits",
-	"e07_iterator",
-	"c_serde",
+	"crates/c_serde",
+	"exercises/e01_fibonacci",
+	"exercises/e02_fizzbuzz",
+	"exercises/e03_temperature",
+	"exercises/e04_modularization",
+	"exercises/e05_quiz",
+	"exercises/e06_traits",
+	"exercises/e07_iterator",
+]
+members = [
+	"assets/c_reqwest_server",
+	"crates/c_flatbuffers",
+	"crates/c_prost",
+	"crates/c_pyo3/rust_from_python",
+	"crates/c_pyo3/python_from_rust",
+	"crates/c_reqwest",
+	"crates/c_serde",
+	"exercises/e01_fibonacci",
+	"exercises/e02_fizzbuzz",
+	"exercises/e03_temperature",
+	"exercises/e04_modularization",
+	"exercises/e05_quiz",
+	"exercises/e06_traits",
+	"exercises/e07_iterator",
+	"xtask",
 ]
 resolver = "3"
 

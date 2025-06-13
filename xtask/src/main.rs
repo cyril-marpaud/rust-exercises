@@ -55,7 +55,10 @@ fn get_default_members() -> Result<Vec<String>> {
 		.and_then(Value::as_array)
 		.ok_or(anyhow::anyhow!("[default-members] parsing error"))?
 		.iter()
-		.filter_map(|item| item.as_str().map(str::to_string))
+		.filter_map(|item| {
+			item.as_str()
+				.map(|c| c.rsplit_once('/').map(|(_, c)| c).unwrap_or(c).to_string())
+		})
 		.collect();
 
 	Ok(default_members)

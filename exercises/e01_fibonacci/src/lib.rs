@@ -7,7 +7,7 @@
 //! - For `n > 1`, `fib(n) = fib(n-1) + fib(n-2)`
 //!
 //! ## Task
-//! Create a recursive function `fib` that computes the n-th number of the Fibonacci sequence.
+//! Create a recursive function `fibonacci` that computes the n-th number of the Fibonacci sequence.
 //! You may use `u64` for both the function parameter and return type.
 //!
 //! # e01_2_closed_form - Closed-form Fibonacci Sequence

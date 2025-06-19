@@ -11,7 +11,6 @@
 //!
 //!     <details>
 //!     <summary>Example of deriving <code>Debug</code></summary>
-//!
 //!     Simply add `#[derive(Debug)]` above your struct or enum definition:
 //!     ```ignore
 //!     #[derive(Debug)]
@@ -20,24 +19,23 @@
 //!         unit: TempUnit,
 //!     }
 //!     ```
-//!
 //!     </details>
 //!
 //!   - [`Display`](https://doc.rust-lang.org/std/fmt/trait.Display.html): Allows custom string representation, making objects printable in a user-friendly format. Not derivable, must be manually implemented.
 //!
 //!     <details>
 //!     <summary>Example of a manual implementation</summary>
-//!
 //!     ```ignore
 //!     impl Display for TempUnit { ... }
 //!     ```
-//!
 //!     </details>
 //!
 //!   - [`Default`](https://doc.rust-lang.org/std/default/trait.Default.html): Provides a mechanism to create default values of these types. `Default` is [derivable](https://doc.rust-lang.org/std/default/trait.Default.html#derivable).
 //! - For `Temp` only:
 //!   - [`PartialEq`](https://doc.rust-lang.org/std/cmp/trait.PartialEq.html): Enables comparison for equality. `PartialEq` is [derivable](https://doc.rust-lang.org/std/cmp/trait.PartialEq.html#derivable).
 //!   - [`PartialOrd`](https://doc.rust-lang.org/std/cmp/trait.PartialOrd.html): Allows objects to be compared, which is essential for ordering. `PartialOrd` is [derivable](https://doc.rust-lang.org/std/cmp/trait.PartialOrd.html#derivable).
+//!   - [`Add`](https://doc.rust-lang.org/std/ops/trait.Add.html): Enables use of the `+` operator.
+//!     The tests use the `.clone()` method, so you also need to implement [`Clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html) which allows duplication of values (and is [derivable](https://doc.rust-lang.org/std/clone/trait.Clone.html#derivable)).
 //!
 //! ## Instructions
 //! - **Step 1:** Uncomment each unit test one by one.

@@ -152,3 +152,20 @@ fn comparison() {
 	assert!(t1 > t3);
 	assert!(t2 > t3);
 }
+
+#[test]
+fn addition() {
+	let t1 = Temp::new(0.0, Celsius);
+	let t2 = Temp::new(41.0, Fahrenheit);
+	let t3 = Temp::new(283.15, Kelvin);
+
+	assert_eq!(t1.clone() + t1.clone(), Temp::new(0.0, Celsius));
+	assert_eq!(t1.clone() + t2.clone(), Temp::new(5.0, Celsius));
+	assert_eq!(t1.clone() + t3.clone(), Temp::new(10.0, Celsius));
+	assert_eq!(t2.clone() + t1.clone(), Temp::new(73.0, Fahrenheit));
+	assert_eq!(t2.clone() + t2.clone(), Temp::new(82.0, Fahrenheit));
+	assert_eq!(t2.clone() + t3.clone(), Temp::new(91.0, Fahrenheit));
+	assert_eq!(t3.clone() + t1.clone(), Temp::new(556.3, Kelvin));
+	assert_eq!(t3.clone() + t2.clone(), Temp::new(561.3, Kelvin));
+	assert_eq!(t3.clone() + t3.clone(), Temp::new(566.3, Kelvin));
+}

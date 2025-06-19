@@ -1,6 +1,7 @@
 use std::{
 	fs::File,
 	io::{self, BufRead, BufReader, BufWriter, Write},
+	path::PathBuf,
 };
 
 struct Question {
@@ -9,7 +10,7 @@ struct Question {
 	answer: usize,
 }
 
-fn read_questions(p: &str) -> Vec<Question> {
+fn read_questions(p: PathBuf) -> Vec<Question> {
 	let file = File::open(p).unwrap();
 	let reader = BufReader::new(file);
 
@@ -63,7 +64,9 @@ fn save_result(p: &str, score: usize) {
 
 pub fn play() {
 	let mut score = 0;
-	for question in read_questions("data/questions.txt") {
+	let path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("data/questions.txt");
+
+	for question in read_questions(path) {
 		let res = request_response(&question);
 		if check_response(res, &question) {
 			score += 1;
@@ -76,11 +79,10 @@ pub fn play() {
 
 #[test]
 fn no_unwrap_or_expect() {
-	use std::{env::current_dir, fs::read_to_string};
+	use std::{fs::read_to_string, path::PathBuf};
 	let last_line = line!() - 4;
 
-	let mut file_path = current_dir().unwrap().parent().unwrap().to_path_buf();
-	file_path.push(file!());
+	let file_path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("src/e05_1_quiz/mod.rs");
 
 	let content = read_to_string(file_path)
 		.expect("Failed to read source file")

@@ -12,19 +12,19 @@ fn main() -> Result<()> {
 	let junit_src = PathBuf::from(JUNIT_SRC);
 	let mut junit_dst = PathBuf::from(JUNIT_SRC);
 
-	for crate_name in &crates {
+	crates.iter().try_for_each(|crate_name|{
 		junit_dst.set_file_name(format!("{crate_name}.xml"));
 
-		let status = sh
+		sh
 			.cmd("cargo")
 			.arg("nextest")
 			.arg("run")
 			.arg("--package")
 			.arg(crate_name)
-			.run();
+			.run()?;
 
-		if status.is_ok() && PathBuf::from(&junit_src).exists() {
-			std::fs::rename(&junit_src, &junit_dst)?;
+		if PathBuf::from(&junit_src).exists() {
+			std::fs::rename(&junit_src, &junit_dst)
 		} else {
 			let uuid = uuid::Uuid::new_v4();
 			let timestamp = now_iso8601()?;
@@ -38,11 +38,11 @@ fn main() -> Result<()> {
     </testsuite>
 </testsuites>"#,
 			);
-			std::fs::write(&junit_dst, xml)?;
-		}
-	}
+			std::fs::write(&junit_dst, xml)
+		}?;
 
-	Ok(())
+		Ok(())
+	})
 }
 
 fn get_default_members() -> Result<Vec<String>> {

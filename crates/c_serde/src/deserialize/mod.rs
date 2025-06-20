@@ -72,22 +72,27 @@ impl PartialOrd for Temp {
 	}
 }
 
-#[test]
-fn coldest() {
-	let coldest = ""; // FIX ME!
+#[cfg(test)]
+mod tests {
+	const COLDEST: &str = "";
+	const HOTTEST: &str = "";
 
-	assert_eq!(
-		format!("{:?}", md5::compute(coldest.to_ascii_lowercase())),
-		"0efc499bfe69e1f1de3545c43ef29cc7"
-	);
-}
+	const COLDEST_HASH: &str = "e08ecf451f7a371a45caa11c1d007f408d2d123648955d7260a430c2131dc005";
+	const HOTTEST_HASH: &str = "32183683c8972d26dcefb6d13d283bde009616bb1029e865428dc38eceb6ebb5";
 
-#[test]
-fn hottest() {
-	let hottest = ""; // FIX ME!
+	#[test]
+	fn coldest() {
+		assert_eq!(
+			format!("{}", blake3::hash(COLDEST.to_ascii_lowercase().as_bytes())),
+			COLDEST_HASH
+		);
+	}
 
-	assert_eq!(
-		format!("{:?}", md5::compute(hottest.to_ascii_lowercase())),
-		"3c40d285e6b2ff6f01a46cf80d9b56f0"
-	);
+	#[test]
+	fn hottest() {
+		assert_eq!(
+			format!("{}", blake3::hash(HOTTEST.to_ascii_lowercase().as_bytes())),
+			HOTTEST_HASH
+		);
+	}
 }

@@ -15,4 +15,4 @@ repository.workspace = true
 version.workspace = true
 
 [dev-dependencies]
-md5 = "0.7"
+blake3 = "1.8.2"

@@ -13,28 +13,28 @@
 //!    <details>
 //!    <summary>Using the <code>mod</code> keyword</summary>
 //!
-//!    Create a new file or block in your library and declare the module using:
+//!    Declare the module with `mod` and create a new file in your library:
 //!    ```ignore
-//!    mod temp_unit {
-//!        // Enum definition and other contents here
-//!    }
+//!    mod temp_unit;
+//!    // The code shall be moved in `temp_unit.rs` or `temp_unit/mod.rs`
 //!    ```
 //!    This isolates the `TempUnit` enum in its own namespace, clarifying its scope and usage.
 //!    </details>
 //!
-//! 2. Inside the `temp_unit` module, use `pub use TempUnit::*;` to export the variants directly.
+//! 2. Inside `lib.rs`, make the necessary adaptations
 //!
-//! 3. Create a `prelude` module at the top level of your library. In this module, re-export `Temp` and `TempUnit`'s variants.
+//! 3. Create a `prelude` module which re-export `Temp` and `TempUnit`'s variants.
 //!
 //!    <details>
 //!    <summary>Why use <code>pub</code> in a prelude module?</summary>
 //!
 //!    The `prelude` module is intended to simplify imports for the end users of your library by providing direct access to commonly used items:
 //!    ```ignore
-//!    pub mod prelude {
-//!        pub use crate::temp::{Temp};
-//!        pub use crate::temp_unit::{Celsius, Fahrenheit, Kelvin};
-//!    }
+//!    pub mod prelude;
+//!
+//!    // prelude.rs
+//!    pub use super::{...};
+//!    pub use crate::{...};
 //!    ```
 //!    Marking these imports as `pub` ensures they can be easily included at the top level of consumer code, enhancing accessibility.
 //!    </details>

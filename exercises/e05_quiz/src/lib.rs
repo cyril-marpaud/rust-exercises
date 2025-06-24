@@ -3,12 +3,17 @@
 //! ## Overview
 //! This exercise enhances the quiz application by incorporating structured error handling, ensuring that the application behaves predictably under various error conditions and avoids program panics.
 //!
-//! ## Task
-//! You are tasked with refactoring the existing quiz application to use robust error handling practices. This involves using the `thiserror` crate to define a custom error type and modifying all functions to return `Result` instead of using panics.
+//! ## Step 0: Try the Quiz Application
+//! - Create a binary entry point at `src/bin/main.rs`.
+//! - Inside it, call the `play()` function from the quiz module.
+//! - Run the program and experiment:
+//!   - Provide valid answers.
+//!   - Try triggering errors: give unexpected input, interrupt the quiz, or simulate file access errors.
 //!
-//! ## Instructions
-//! - **Error Handling Setup:**
-//!   - Add the [`thiserror`](https://docs.rs/thiserror) crate to handle custom errors.
+//! This will help you understand how the quiz works and identify where panic-worthy behavior must be replaced by proper error handling.
+//!
+//! ## Error Handling Setup
+//! - Add the [`thiserror`](https://docs.rs/thiserror) crate to handle custom errors.
 //!
 //!     <details>
 //!     <summary>Add <code>thiserror</code> to your Cargo.toml</summary>
@@ -18,7 +23,7 @@
 //!     ```
 //!     </details>
 //!
-//!   - Define a comprehensive error type using `thiserror` to encapsulate potential failure points.
+//! - Define a comprehensive error type using `thiserror` to encapsulate potential failure points.
 //!
 //!     <details>
 //!     <summary>Defining the <code>QuizError</code> type</summary>
@@ -33,10 +38,10 @@
 //!     ```
 //!     </details>
 //!
-//! - **Refactoring Functions:**
-//!   - Update all functions to return `Result`.
-//!   - Replace `unwrap()` with `map_err()` to convert various errors into your own type.
-//!   - Use the propagation operator to unwrap or propagate those `Result`s.
+//! ## Refactoring Functions
+//! - Update all functions to return `Result`.
+//! - Replace `unwrap()` with `map_err()` to convert various errors into your own type.
+//! - Use the propagation operator to unwrap or propagate those `Result`s.
 //!
 //!     <details>
 //!     <summary>Example of refactoring a function to return Result</summary>
@@ -49,16 +54,16 @@
 //!     ```
 //!     </details>
 //!
-//! - **Implement Robust Array Element Access:**
-//!   - Replace direct array indexing with the `.get()` method to safely access elements.
-//!   - Combine it with `ok_or` to convert the `Option` into a `Result`.
-//!   - Propagate the error using the `?` operator as well.
+//! ## Implement Robust Array Element Access
+//! - Replace direct array indexing with the `.get()` method to safely access elements.
+//! - Combine it with `ok_or` to convert the `Option` into a `Result`.
+//! - Propagate the error using the `?` operator as well.
 //!
-//! - **Implement Robust Operations:**
-//!   - Replace each arithmetic operation with a safe method and propagate the errors as well.
+//! ## Implement Robust Operations
+//! - Replace each arithmetic operation with a safe method and propagate the errors as well.
 //!
-//! - **User Interaction Errors:**
-//!   - Ensure that all user input functions handle errors gracefully, providing feedback and retry mechanisms where appropriate.
+//! ## User Interaction Errors
+//! - Ensure that all user input functions handle errors gracefully, providing feedback and retry mechanisms where appropriate.
 //!
 //!     <details>
 //!     <summary>Handling user input errors</summary>

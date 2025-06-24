@@ -50,7 +50,7 @@ fn check_response(user_response: usize, question: &Question) -> bool {
 		true => println!("Correct!"),
 		false => println!(
 			"Incorrect! The correct answer was {}",
-			question.choices[question.answer]
+			question.choices[question.answer - 1]
 		),
 	}
 	correct

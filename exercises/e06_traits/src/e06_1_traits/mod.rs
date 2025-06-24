@@ -169,3 +169,14 @@ fn addition() {
 	assert_eq!(t3.clone() + t2.clone(), Temp::new(561.3, Kelvin));
 	assert_eq!(t3.clone() + t3.clone(), Temp::new(566.3, Kelvin));
 }
+
+#[test]
+fn addition_float() {
+	let t1 = Temp::new(0.0, Celsius);
+	let t2 = Temp::new(0.0, Fahrenheit);
+	let t3 = Temp::new(0.0, Kelvin);
+
+	assert_eq!(t1 + 10.0, Temp::new(10.0, Celsius));
+	assert_eq!(t2 + 10.0, Temp::new(10.0, Fahrenheit));
+	assert_eq!(t3 + 10.0, Temp::new(10.0, Kelvin));
+}

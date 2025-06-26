@@ -1,4 +1,4 @@
-//! # e06_1_traits - Traits
+//! # e05_1_traits - Traits
 //!
 //! ## Overview
 //! Enhance the idiomatic use of Rust by implementing common traits for the `Temp` and `TempUnit` types.
@@ -46,4 +46,4 @@
 //! - Use Rust Analyzer to speed up trait implementation:
 //!   - Click the yellow light bulb (💡) or use **`ctrl`**+**`.`** when a trait is not fully implemented to bring up the quick fixes menu.
 
-// pub mod e06_1_traits;
+// pub mod e05_1_traits;

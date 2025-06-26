@@ -1,4 +1,4 @@
-//! # e05_1_quiz - Error Handling
+//! # e04_1_quiz - Error Handling
 //!
 //! ## Overview
 //! This exercise enhances the quiz application by incorporating structured error handling, ensuring that the application behaves predictably under various error conditions and avoids program panics.
@@ -81,4 +81,4 @@
 //!     ```
 //!     </details>
 
-// pub mod e05_1_quiz;
+// pub mod e04_1_quiz;

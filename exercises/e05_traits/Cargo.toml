@@ -1,5 +1,5 @@
 [package]
-name = "e06_traits"
+name = "e05_traits"
 
 authors.workspace = true
 categories.workspace = true

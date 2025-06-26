@@ -1,4 +1,4 @@
-//! # e03_1_temperature - Temperature Conversion
+//! # e02_1_temperature - Temperature Conversion
 //!
 //! ## Overview
 //! Implement a temperature conversion library that handles conversions between Celsius (C), Fahrenheit (F), and Kelvin (K).
@@ -27,4 +27,4 @@
 //! | K    | C    | C = K - 273.15                    |
 //! | K    | F    | F = 9 ⨉ (K - 273.15) ÷ 5 + 32     |
 
-// pub mod e03_1_temperature;
+// pub mod e02_1_temperature;

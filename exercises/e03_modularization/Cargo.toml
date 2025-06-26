@@ -1,5 +1,5 @@
 [package]
-name = "e04_modularization"
+name = "e03_modularization"
 
 authors.workspace = true
 categories.workspace = true

@@ -1,5 +1,5 @@
 [package]
-name = "e02_fizzbuzz"
+name = "e06_iterators"
 
 authors.workspace = true
 categories.workspace = true

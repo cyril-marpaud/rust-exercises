@@ -1,5 +1,5 @@
 [package]
-name = "e03_temperature"
+name = "e04_quiz"
 
 authors.workspace = true
 categories.workspace = true
@@ -13,3 +13,6 @@ publish.workspace = true
 readme.workspace = true
 repository.workspace = true
 version.workspace = true
+
+[dev-dependencies]
+toml = "0.8.23"

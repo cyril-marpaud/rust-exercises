@@ -1,13 +1,12 @@
 [workspace]
 default-members = [
 	"crates/c_serde",
-	"exercises/e01_fibonacci",
-	"exercises/e02_fizzbuzz",
-	"exercises/e03_temperature",
-	"exercises/e04_modularization",
-	"exercises/e05_quiz",
-	"exercises/e06_traits",
-	"exercises/e07_iterator",
+	"exercises/e01_fibzz",
+	"exercises/e02_temperature",
+	"exercises/e03_modularization",
+	"exercises/e04_quiz",
+	"exercises/e05_traits",
+	"exercises/e06_iterators",
 ]
 members = [
 	"assets/c_reqwest_server",
@@ -17,13 +16,12 @@ members = [
 	"crates/c_pyo3/python_from_rust",
 	"crates/c_reqwest",
 	"crates/c_serde",
-	"exercises/e01_fibonacci",
-	"exercises/e02_fizzbuzz",
-	"exercises/e03_temperature",
-	"exercises/e04_modularization",
-	"exercises/e05_quiz",
-	"exercises/e06_traits",
-	"exercises/e07_iterator",
+	"exercises/e01_fibzz",
+	"exercises/e02_temperature",
+	"exercises/e03_modularization",
+	"exercises/e04_quiz",
+	"exercises/e05_traits",
+	"exercises/e06_iterators",
 	"xtask",
 ]
 resolver = "3"

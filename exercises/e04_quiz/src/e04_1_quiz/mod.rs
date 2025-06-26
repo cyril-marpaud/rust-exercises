@@ -82,7 +82,7 @@ fn no_unwrap_or_expect() {
 	use std::{fs::read_to_string, path::PathBuf};
 	let last_line = line!() - 4;
 
-	let file_path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("src/e05_1_quiz/mod.rs");
+	let file_path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("src/e04_1_quiz/mod.rs");
 
 	let content = read_to_string(file_path)
 		.expect("Failed to read source file")

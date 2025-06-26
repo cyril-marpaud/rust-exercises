@@ -1,5 +1,5 @@
 [package]
-name = "e07_iterator"
+name = "e01_fibzz"
 
 authors.workspace = true
 categories.workspace = true
@@ -13,3 +13,6 @@ publish.workspace = true
 readme.workspace = true
 repository.workspace = true
 version.workspace = true
+
+[dev-dependencies]
+rand = "0.9.1"

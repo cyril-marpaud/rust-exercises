@@ -37,6 +37,7 @@
 //!    pub use crate::{...};
 //!    ```
 //!    Marking these imports as `pub` ensures they can be easily included at the top level of consumer code, enhancing accessibility.
+//!
 //!    </details>
 //!
 //! ## Using Rust Analyzer

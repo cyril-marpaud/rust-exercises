@@ -21,6 +21,7 @@
 //!     ```bash
 //!     cargo add thiserror
 //!     ```
+//!
 //!     </details>
 //!
 //! - Define a comprehensive error type using `thiserror` to encapsulate potential failure points.
@@ -36,6 +37,7 @@
 //!         ...
 //!     }
 //!     ```
+//!
 //!     </details>
 //!
 //! ## Refactoring Functions
@@ -52,6 +54,7 @@
 //!         ...
 //!     }
 //!     ```
+//!
 //!     </details>
 //!
 //! ## Implement Robust Array Element Access
@@ -79,6 +82,7 @@
 //!         response.trim().parse().map_err(|e| QuizError::ParseError(response, e))
 //!     }
 //!     ```
+//!
 //!     </details>
 
 // pub mod e04_1_quiz;

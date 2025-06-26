@@ -11,6 +11,7 @@
 //!
 //!     <details>
 //!     <summary>Example of deriving <code>Debug</code></summary>
+//!
 //!     Simply add `#[derive(Debug)]` above your struct or enum definition:
 //!     ```ignore
 //!     #[derive(Debug)]
@@ -19,15 +20,18 @@
 //!         unit: TempUnit,
 //!     }
 //!     ```
+//!
 //!     </details>
 //!
 //!   - [`Display`](https://doc.rust-lang.org/std/fmt/trait.Display.html): Allows custom string representation, making objects printable in a user-friendly format. Not derivable, must be manually implemented.
 //!
 //!     <details>
 //!     <summary>Example of a manual implementation</summary>
+//!
 //!     ```ignore
 //!     impl Display for TempUnit { ... }
 //!     ```
+//!
 //!     </details>
 //!
 //!   - [`Default`](https://doc.rust-lang.org/std/default/trait.Default.html): Provides a mechanism to create default values of these types. `Default` is [derivable](https://doc.rust-lang.org/std/default/trait.Default.html#derivable).

@@ -1,7 +1,8 @@
-use anyhow::{Context, Result};
-use std::{fs::read_to_string, path::PathBuf};
-use time::{OffsetDateTime, format_description};
+use anyhow::Result;
+use chrono::{DateTime, Local};
+use std::{fs::read_to_string, path::PathBuf, time::SystemTime};
 use toml::Value;
+use uuid::Uuid;
 use xshell::Shell;
 
 fn main() -> Result<()> {
@@ -12,37 +13,43 @@ fn main() -> Result<()> {
 	let junit_src = PathBuf::from(JUNIT_SRC);
 	let mut junit_dst = PathBuf::from(JUNIT_SRC);
 
-	crates.iter().try_for_each(|crate_name|{
+	crates.iter().for_each(|crate_name| {
 		junit_dst.set_file_name(format!("{crate_name}.xml"));
 
-		sh
+		let test_cmd = sh
 			.cmd("cargo")
 			.arg("nextest")
 			.arg("run")
+			.arg("--no-fail-fast")
 			.arg("--package")
 			.arg(crate_name)
-			.run()?;
+			.run();
 
-		if PathBuf::from(&junit_src).exists() {
+		let junit_report = if test_cmd.is_ok() && PathBuf::from(&junit_src).exists() {
 			std::fs::rename(&junit_src, &junit_dst)
 		} else {
-			let uuid = uuid::Uuid::new_v4();
-			let timestamp = now_iso8601()?;
+			let uuid = Uuid::new_v4();
+			let timestamp = DateTime::<Local>::from(SystemTime::now())
+				.to_rfc3339_opts(chrono::SecondsFormat::Millis, false);
 			let xml = format!(
-				r#"<?xml version="1.0" encoding="UTF-8"?>
+r#"<?xml version="1.0" encoding="UTF-8"?>
 <testsuites name="nextest-run" tests="1" failures="1" errors="0" uuid="{uuid}" timestamp="{timestamp}" time="0.0">
     <testsuite name="{crate_name}" tests="1" disabled="0" errors="0" failures="1">
         <testcase name="build_and_test" classname="{crate_name}" timestamp="{timestamp}" time="0.0">
             <failure message="Build or test failed for {crate_name}" />
         </testcase>
     </testsuite>
-</testsuites>"#,
+</testsuites>"#
 			);
 			std::fs::write(&junit_dst, xml)
-		}?;
+		};
 
-		Ok(())
-	})
+		if let Err(e) = junit_report {
+			println!("An error occured: {e}");
+		}
+	});
+
+	Ok(())
 }
 
 fn get_default_members() -> Result<Vec<String>> {
@@ -62,12 +69,4 @@ fn get_default_members() -> Result<Vec<String>> {
 		.collect();
 
 	Ok(default_members)
-}
-
-fn now_iso8601() -> Result<String> {
-	let now = OffsetDateTime::now_local().unwrap_or_else(|_| OffsetDateTime::now_utc());
-	let fmt = format_description::parse(
-        "[year]-[month]-[day]T[hour]:[minute]:[second].[subsecond digits:3][offset_hour sign:mandatory]:[offset_minute]"
-    ).unwrap();
-	now.format(&fmt).context("Time formatting error")
 }

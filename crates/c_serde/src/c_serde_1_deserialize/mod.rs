@@ -77,14 +77,11 @@ mod tests {
 	const COLDEST: &str = "";
 	const HOTTEST: &str = "";
 
-	const COLDEST_HASH: &str = "e08ecf451f7a371a45caa11c1d007f408d2d123648955d7260a430c2131dc005";
-	const HOTTEST_HASH: &str = "32183683c8972d26dcefb6d13d283bde009616bb1029e865428dc38eceb6ebb5";
-
 	#[test]
 	fn coldest() {
 		assert_eq!(
 			format!("{}", blake3::hash(COLDEST.to_ascii_lowercase().as_bytes())),
-			COLDEST_HASH
+			"e08ecf451f7a371a45caa11c1d007f408d2d123648955d7260a430c2131dc005"
 		);
 	}
 
@@ -92,7 +89,7 @@ mod tests {
 	fn hottest() {
 		assert_eq!(
 			format!("{}", blake3::hash(HOTTEST.to_ascii_lowercase().as_bytes())),
-			HOTTEST_HASH
+			"32183683c8972d26dcefb6d13d283bde009616bb1029e865428dc38eceb6ebb5"
 		);
 	}
 }

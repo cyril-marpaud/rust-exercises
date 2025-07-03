@@ -1,0 +1,3 @@
+[submodule "solutions"]
+	path = solutions
+	url = git@gitlab.com:cmp-trainings/rust/rust-solutions.git

@@ -59,7 +59,7 @@ fn check_response(user_response: usize, question: &Question) -> bool {
 fn save_result(p: &str, score: usize) {
 	let file = File::create(p).unwrap();
 	let mut file = BufWriter::new(file);
-	writeln!(file, "Final score: {}", score).unwrap();
+	writeln!(file, "Final score: {score}",).unwrap();
 }
 
 pub fn play() {

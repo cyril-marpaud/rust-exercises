@@ -41,7 +41,7 @@ fn debug_c() {
 		format!("{:?}", Temp::new(12.86, Celsius)),
 		"Temp { temp: 12.86, unit: Celsius }"
 	);
-	assert_eq!(format!("{:?}", Celsius), "Celsius");
+	assert_eq!(format!("{Celsius:?}"), "Celsius");
 }
 
 #[test]
@@ -50,7 +50,7 @@ fn debug_f() {
 		format!("{:?}", Temp::new(57.24, Fahrenheit)),
 		"Temp { temp: 57.24, unit: Fahrenheit }"
 	);
-	assert_eq!(format!("{:?}", Fahrenheit), "Fahrenheit");
+	assert_eq!(format!("{Fahrenheit:?}"), "Fahrenheit");
 }
 
 #[test]
@@ -59,28 +59,28 @@ fn debug_k() {
 		format!("{:?}", Temp::new(96.84, Kelvin)),
 		"Temp { temp: 96.84, unit: Kelvin }"
 	);
-	assert_eq!(format!("{:?}", Kelvin), "Kelvin");
+	assert_eq!(format!("{Kelvin:?}"), "Kelvin");
 }
 
 #[test]
 fn display_c() {
 	assert_eq!(format!("{}", Temp::new(54.84, Celsius)), "54.84°C");
 	assert_eq!(format!("{}", Temp::new(-10.84, Celsius)), "-10.84°C");
-	assert_eq!(format!("{}", Celsius), "°C");
+	assert_eq!(format!("{Celsius}"), "°C");
 }
 
 #[test]
 fn display_f() {
 	assert_eq!(format!("{}", Temp::new(1337.0, Fahrenheit)), "1337°F");
 	assert_eq!(format!("{}", Temp::new(-843.84, Fahrenheit)), "-843.84°F");
-	assert_eq!(format!("{}", Fahrenheit), "°F");
+	assert_eq!(format!("{Fahrenheit}"), "°F");
 }
 
 #[test]
 fn display_k() {
 	assert_eq!(format!("{}", Temp::new(273.15, Kelvin)), "273.15K");
 	assert_eq!(format!("{}", Temp::new(34.2, Kelvin)), "34.2K");
-	assert_eq!(format!("{}", Kelvin), "K");
+	assert_eq!(format!("{Kelvin}"), "K");
 }
 
 #[test]

@@ -68,5 +68,15 @@
 //!   </details>
 //!
 //! - Update the tests to check for correct results
+//!
+//! ## (Bonus) Step 5: Serializing to MessagePack
+//!
+//! This optional bonus step introduces binary serialization using MessagePack.
+//!
+//! - Add the [`rmp_serde`](https://docs.rs/rmp-serde) crate as a dependency.
+//! - Implement [`Serialize`](https://docs.rs/serde/latest/serde/trait.Serialize.html) for `City`.
+//! - Sort the vector of cities by temperature using [`Vec::sort_by`](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.sort_by).
+//! - Create a file named `data/serialized.msgpack` (⚠️ the test checks for this exact name).
+//! - Serialize the sorted vector into this file using [`rmp_serde::encode::write`](https://docs.rs/rmp-serde/latest/rmp_serde/encode/fn.write.html).
 
 // pub mod c_serde_1_deserialize;

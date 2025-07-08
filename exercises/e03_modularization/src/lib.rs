@@ -21,9 +21,9 @@
 //!    This isolates the `TempUnit` enum in its own namespace, clarifying its scope and usage.
 //!    </details>
 //!
-//! 2. Inside `lib.rs`, make the necessary adaptations
+//! 2. Inside `mod.rs`, make the necessary adaptations
 //!
-//! 3. Create a `prelude` module which re-export `Temp` and `TempUnit`'s variants.
+//! 3. Inside `mod.rs`, create a `prelude` module which re-export `Temp` and `TempUnit`'s variants.
 //!
 //!    <details>
 //!    <summary>Why use <code>pub</code> in a prelude module?</summary>

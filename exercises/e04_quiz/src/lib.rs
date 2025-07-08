@@ -57,12 +57,12 @@
 //!
 //!     </details>
 //!
-//! ## Implement Robust Array Element Access
+//! ## Bonus: Implement Robust Array Element Access
 //! - Replace direct array indexing with the `.get()` method to safely access elements.
 //! - Combine it with `ok_or` to convert the `Option` into a `Result`.
 //! - Propagate the error using the `?` operator as well.
 //!
-//! ## Implement Robust Operations
+//! ## Bonus: Implement Robust Operations
 //! - Replace each arithmetic operation with a safe method and propagate the errors as well.
 //!
 //! ## User Interaction Errors

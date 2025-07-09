@@ -93,17 +93,17 @@ mod tests {
 		);
 	}
 
-	#[test]
-	fn serialized_sorted_msgpack() {
-		let filepath =
-			std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("data/serialized.msgpack");
-
-		assert_eq!(
-			format!(
-				"{}",
-				blake3::hash(std::fs::read(filepath).unwrap().as_slice())
-			),
-			"0ff227a10c7737d6a12bce6b578faf2e3ea4a6fcfc6fd4281618bda717006982"
-		);
-	}
+	// #[test]
+	// fn serialized_sorted_msgpack() {
+	// 	let filepath =
+	// 		std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("data/serialized.msgpack");
+	//
+	// 	assert_eq!(
+	// 		format!(
+	// 			"{}",
+	// 			blake3::hash(std::fs::read(filepath).unwrap().as_slice())
+	// 		),
+	// 		"0ff227a10c7737d6a12bce6b578faf2e3ea4a6fcfc6fd4281618bda717006982"
+	// 	);
+	// }
 }

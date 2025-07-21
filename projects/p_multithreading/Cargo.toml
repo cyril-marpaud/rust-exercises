@@ -1,0 +1,20 @@
+[package]
+name = "p_multithreading"
+authors.workspace = true
+categories.workspace = true
+description.workspace = true
+documentation.workspace = true
+edition.workspace = true
+homepage.workspace = true
+keywords.workspace = true
+license.workspace = true
+publish.workspace = true
+readme.workspace = true
+repository.workspace = true
+version.workspace = true
+
+[dependencies]
+num = "0.4.3"
+
+[dev-dependencies]
+blake3 = "1.8.2"

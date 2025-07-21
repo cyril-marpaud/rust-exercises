@@ -3,3 +3,6 @@ rfp/
 target/
 
 Cargo.lock
+
+*.png
+*.svg

@@ -22,6 +22,7 @@ members = [
 	"exercises/e04_quiz",
 	"exercises/e05_traits",
 	"exercises/e06_iterators",
+	"projects/p_multithreading",
 	"xtask",
 ]
 resolver = "3"

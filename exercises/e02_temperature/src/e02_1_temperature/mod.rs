@@ -83,21 +83,21 @@ mod tests {
 	#[test]
 	fn c_to_c() {
 		let mut t = Temp::new(0.0, TempUnit::Celsius);
-		assert_eq!(t.convert(TempUnit::Celsius).value, 0.0);
+		assert_eq!(t.convert(TempUnit::Celsius).temp, 0.0);
 		assert!(matches!(t.unit, TempUnit::Celsius));
 	}
 
 	#[test]
 	fn f_to_f() {
 		let mut t = Temp::new(165.4856, TempUnit::Fahrenheit);
-		assert_eq!(t.convert(TempUnit::Fahrenheit).value, 165.4856);
+		assert_eq!(t.convert(TempUnit::Fahrenheit).temp, 165.4856);
 		assert!(matches!(t.unit, TempUnit::Fahrenheit));
 	}
 
 	#[test]
 	fn k_to_k() {
 		let mut t = Temp::new(498.14, TempUnit::Kelvin);
-		assert_eq!(t.convert(TempUnit::Kelvin).value, 498.14);
+		assert_eq!(t.convert(TempUnit::Kelvin).temp, 498.14);
 		assert!(matches!(t.unit, TempUnit::Kelvin));
 	}
 

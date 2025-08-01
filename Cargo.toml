@@ -24,6 +24,7 @@ members = [
 	"exercises/e06_iterators",
 	"projects/p_ferroscope",
 	"projects/p_multithreading",
+	"projects/p_neuralnetwork",
 	"xtask",
 ]
 resolver = "3"

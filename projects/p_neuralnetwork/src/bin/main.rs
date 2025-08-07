@@ -1,62 +1,47 @@
 use p_neuralnetwork::p_neuralnetwork::{NeuralNetwork, Normalizer};
 
 fn main() {
-	// Génération des données d'entraînement
-	let celsius_temps: Vec<f64> = (-40..=40).step_by(5).map(|x| x as f64).collect();
-
-	let fahrenheit_temps: Vec<f64> = celsius_temps
-		.iter()
-		.map(|&c| c * 9.0 / 5.0 + 32.0)
-		.collect();
-
-	// Normalisation des données
 	let input_normalizer = Normalizer::new(-40.0, 40.0);
-	let output_normalizer = Normalizer::new(-40.0, 104.0); // -40°F à 104°F
+	let output_normalizer = Normalizer::new(-40.0, 104.0);
 
-	let normalized_inputs: Vec<f64> = celsius_temps
-		.iter()
-		.map(|&c| input_normalizer.normalize(c))
-		.collect();
-
-	let normalized_outputs: Vec<f64> = fahrenheit_temps
-		.iter()
-		.map(|&f| output_normalizer.normalize(f))
-		.collect();
-
-	// Création et entraînement du réseau
-	let mut network = NeuralNetwork::new(1, vec![2], 1);
+	let (normalized_inputs, normalized_outputs): (Vec<_>, Vec<_>) = (-40..=40)
+		.step_by(5)
+		.map(|c| {
+			(
+				input_normalizer.normalize(c as f64),
+				output_normalizer.normalize(c as f64 * 9.0 / 5.0 + 32.0),
+			)
+		})
+		.unzip();
 
 	println!("Entraînement du réseau de neurones...");
+	let mut network = NeuralNetwork::new(1, vec![2], 1);
 	let errors = network.train(&normalized_inputs, &normalized_outputs, 1000, 0.1);
-
 	println!("\nEntraînement terminé!");
 	println!("Erreur finale: {:.6}", errors.last().unwrap());
 
-	// Test du modèle
 	println!("\n--- Test du modèle ---");
-	let test_temps = vec![-50.0, -25.0, 0.0, 15.0, 37.0, 100.0];
+	let temps = [-50.0, -25.0, 0.0, 15.0, 37.0, 100.0];
 
 	println!("Celsius | Fahrenheit (prédit) | Fahrenheit (réel) | Erreur");
-	println!("--------|-------------------|------------------|--------");
+	println!("--------|---------------------|-------------------|--------");
 
-	let mut total_error = 0.0;
-	for celsius in &test_temps {
-		let normalized_input = input_normalizer.normalize(*celsius);
-		let normalized_output = network.predict(normalized_input);
-		let predicted_fahrenheit = output_normalizer.denormalize(normalized_output);
-		let actual_fahrenheit = celsius * 9.0 / 5.0 + 32.0;
-		let error = (predicted_fahrenheit - actual_fahrenheit).abs();
+	let total_error = temps.into_iter().fold(0.0, |total_error, temp| {
+		let normalized_input = input_normalizer.normalize(temp);
+		let normalized_output = network.infer(normalized_input);
 
-		println!(
-			"{celsius:7.1} | {predicted_fahrenheit:17.1} | {actual_fahrenheit:16.1} | {error:7.2}°F"
-		);
+		let inferred = output_normalizer.denormalize(normalized_output);
+		let actual = temp * 9.0 / 5.0 + 32.0;
+		let error = (inferred - actual).abs();
 
-		total_error += error;
-	}
+		println!("{temp:>7.1} | {inferred:>19.1} | {actual:>17.1} | {error:>5.2}°F");
+
+		total_error + error
+	});
 
 	println!(
 		"\nErreur moyenne sur le test: {:.2}°F",
-		total_error / test_temps.len() as f64
+		total_error / temps.len() as f64
 	);
 
 	// Démonstration des poids appris
@@ -82,7 +67,7 @@ fn main() {
 
 		if let Ok(celsius) = input.parse::<f64>() {
 			let normalized_input = input_normalizer.normalize(celsius);
-			let normalized_output = network.predict(normalized_input);
+			let normalized_output = network.infer(normalized_input);
 			let predicted_fahrenheit = output_normalizer.denormalize(normalized_output);
 			let actual_fahrenheit = celsius * 9.0 / 5.0 + 32.0;
 

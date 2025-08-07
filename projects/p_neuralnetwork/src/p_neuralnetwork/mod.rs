@@ -178,7 +178,7 @@ impl NeuralNetwork {
 		errors
 	}
 
-	pub fn predict(&self, input: f64) -> f64 {
+	pub fn infer(&self, input: f64) -> f64 {
 		let (output, _) = self.forward(&[input]);
 		output[0]
 	}

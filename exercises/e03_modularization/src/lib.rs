@@ -23,7 +23,7 @@
 //!
 //! 2. Inside `mod.rs`, make the necessary adaptations
 //!
-//! 3. Inside `mod.rs`, create a `prelude` module which re-export `Temp` and `TempUnit`'s variants.
+//! 3. Inside `mod.rs`, declare a `prelude` module which re-export `Temp` and `TempUnit`'s variants.
 //!
 //!    <details>
 //!    <summary>Why use <code>pub</code> in a prelude module?</summary>

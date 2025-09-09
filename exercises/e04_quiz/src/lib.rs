@@ -64,25 +64,5 @@
 //!
 //! ## Bonus: Implement Robust Operations
 //! - Replace each arithmetic operation with a safe method and propagate the errors as well.
-//!
-//! ## User Interaction Errors
-//! - Ensure that all user input functions handle errors gracefully, providing feedback and retry mechanisms where appropriate.
-//!
-//!     <details>
-//!     <summary>Handling user input errors</summary>
-//!
-//!     ```ignore
-//!     fn request_response(question: &Question) -> Result<usize, QuizError> {
-//!         println!("{}", question.statement);
-//!         for (index, choice) in question.choices.iter().enumerate() {
-//!             println!("{}: {}", index + 1, choice);
-//!         }
-//!         let mut response = String::new();
-//!         io::stdin().read_line(&mut response).map_err(QuizError::FileRead)?;
-//!         response.trim().parse().map_err(|e| QuizError::ParseError(response, e))
-//!     }
-//!     ```
-//!
-//!     </details>
 
 // pub mod e04_1_quiz;

@@ -9,12 +9,12 @@ default-members = [
 	"exercises/e06_iterators",
 ]
 members = [
-	"assets/c_reqwest_server",
 	"crates/c_flatbuffers",
 	"crates/c_prost",
 	"crates/c_pyo3/rust_from_python",
 	"crates/c_pyo3/python_from_rust",
 	"crates/c_reqwest",
+	"crates/c_reqwest/assets/c_reqwest_server",
 	"crates/c_serde",
 	"exercises/e01_fibzz",
 	"exercises/e02_temperature",

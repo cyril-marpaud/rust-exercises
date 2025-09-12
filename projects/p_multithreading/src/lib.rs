@@ -1,4 +1,4 @@
-//! <img src="../../../assets/mandelbrot.png" alt="Mandelbrot fractal" style="display: block; margin: auto; max-width: 300px">
+//! <img src="../../../projects/p_multithreading/assets/mandelbrot.png" alt="Mandelbrot fractal" style="display: block; margin: auto; max-width: 300px">
 //!
 //! # Parallel Computation of the Mandelbrot Fractal
 //!

@@ -49,8 +49,8 @@
 //!     <summary>Example of refactoring a function to return Result</summary>
 //!
 //!     ```ignore
-//!     fn read_questions(p: &str) -> Result<Vec<Question>, QuizError> {
-//!         let file = File::open(p).map_err(|e| QuizError::FileOpen(p.to_string(), e))?;
+//!     fn read_questions(p: PathBuf) -> Result<Vec<Question>, QuizError> {
+//!         let file = File::open(&p).map_err(|e| QuizError::FileOpen(p.display().to_string(), e))?;
 //!         ...
 //!     }
 //!     ```

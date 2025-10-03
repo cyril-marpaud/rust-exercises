@@ -21,10 +21,10 @@ async fn main() {
 		.route("/boat", delete(boat))
 		.route("/return", get(return_home));
 
-	let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
+	let listener = tokio::net::TcpListener::bind("0.0.0.0:1337").await.unwrap();
 
 	println!("The server is up and running ! Do not close this terminal.");
-	println!("You can start by sending a GET request to http://localhost:3000/");
+	println!("You can start by sending a GET request to http://localhost:1337/");
 	println!("Follow the instructions in the responses to progress through the adventure.");
 
 	axum::serve(listener, router).await.unwrap();

@@ -73,7 +73,7 @@
 //!
 //! ### 6. Implementing `cpx_to_escape` (`mod.rs`)
 //!
-//! This function takes a complex number as a parameter and returns an integer between 0 and [`u8::MAX`](https://doc.rust-lang.org/std/primitive.u8.html#associatedconstant.MAX) representing how quickly the Mandelbrot sequence diverges for that point. This value will be used to encode each pixel's color in grayscale on one byte.
+//! This function takes a complex number named $c$ as a parameter and returns an integer between 0 and [`u8::MAX`](https://doc.rust-lang.org/std/primitive.u8.html#associatedconstant.MAX) representing how quickly the Mandelbrot sequence diverges for that point. This value will be used to encode each pixel's color in grayscale on one byte.
 //!
 //! The algorithm works by iterating the Mandelbrot equation $z_{n+1} = z_n^2 + c$ starting from $z_0 = 0$. For each complex number $c$, we count how many iterations it takes before the sequence "escapes" (diverges to infinity). Points that never escape are part of the Mandelbrot set.
 //!
@@ -85,7 +85,7 @@
 //! <summary>💡 Hint: Iteration loop</summary>
 //!
 //! You'll need:
-//! - A mutable `z` starting at 0
+//! - A mutable complex number `z` starting at 0
 //! - A loop from 0 to `u8::MAX`
 //! - An escape condition checking if `z.norm_sqr() > 4.0`
 //! - The recurrence formula: `z = z * z + c`

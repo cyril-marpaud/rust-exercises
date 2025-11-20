@@ -1,6 +1,6 @@
 use std::{
 	fs::File,
-	io::{self, BufRead, BufReader, BufWriter, Write},
+	io::{self, BufWriter, Read, Write},
 	path::PathBuf,
 };
 
@@ -10,20 +10,20 @@ struct Question {
 	answer: usize,
 }
 
-fn read_questions(p: PathBuf) -> Vec<Question> {
-	let file = File::open(p).unwrap();
-	let reader = BufReader::new(file);
-
+fn read_questions(p: &PathBuf) -> Vec<Question> {
 	let mut questions = Vec::new();
 
-	for line in reader.lines() {
-		let l = line.unwrap();
+	let mut file_content = String::new();
+	let mut file = File::open(p).unwrap();
+	file.read_to_string(&mut file_content).unwrap();
+
+	for l in file_content.lines() {
 		let parts: Vec<&str> = l.split('|').collect();
 
 		let question = Question {
 			statement: parts[0].to_string(),
 			choices: parts[1..5].iter().map(|&s| s.to_string()).collect(),
-			answer: parts[5].parse::<usize>().unwrap(),
+			answer: parts[5].parse().unwrap(),
 		};
 		questions.push(question);
 	}
@@ -40,7 +40,7 @@ fn request_response(question: &Question) -> usize {
 
 	let mut response = String::new();
 	io::stdin().read_line(&mut response).unwrap();
-	response.trim().parse::<usize>().unwrap()
+	response.trim().parse().unwrap()
 }
 
 fn check_response(user_response: usize, question: &Question) -> bool {
@@ -56,7 +56,7 @@ fn check_response(user_response: usize, question: &Question) -> bool {
 	correct
 }
 
-fn save_result(p: &str, score: usize) {
+fn save_result(p: &PathBuf, score: usize) {
 	let file = File::create(p).unwrap();
 	let mut file = BufWriter::new(file);
 	writeln!(file, "Final score: {score}",).unwrap();
@@ -64,9 +64,12 @@ fn save_result(p: &str, score: usize) {
 
 pub fn play() {
 	let mut score = 0;
-	let path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("data/questions.txt");
 
-	for question in read_questions(path) {
+	let data_path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("data");
+	let q_path = data_path.join("questions.txt");
+	let r_path = data_path.join("results.txt");
+
+	for question in read_questions(&q_path) {
 		let res = request_response(&question);
 		if check_response(res, &question) {
 			score += 1;
@@ -74,7 +77,7 @@ pub fn play() {
 	}
 
 	println!("Your score is: {score}");
-	save_result("data/results.txt", score);
+	save_result(&r_path, score);
 }
 
 #[test]

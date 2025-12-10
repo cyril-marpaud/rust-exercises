@@ -34,7 +34,7 @@
 //! - [`powi`](https://doc.rust-lang.org/std/primitive.f64.html#method.powi): Raises a number to a power represented as an integer. Preferred over `powf` for maintaining precision with integers.
 //! - [`as`](https://doc.rust-lang.org/rust-by-example/types/cast.html): Used to perform type casting between types, particularly from `f64` to `u64`.
 //!
-//! # e01_3_imperative_fizzbuzz - FizzBuzz, Imperative Paradigm
+//! # Bonus: e01_3_imperative_fizzbuzz - FizzBuzz, Imperative Paradigm
 //!
 //! ## Overview
 //! Implement the classic FizzBuzz problem for a single integer `n` using the imperative programming style.

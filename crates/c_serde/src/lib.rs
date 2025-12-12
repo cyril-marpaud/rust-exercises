@@ -62,7 +62,7 @@
 //!
 //!   ```ignore
 //!       let cities = vec![...]; // Assume this vector is filled with City instances
-//!       let coldest = cities.iter().min_by_key(|c| c.temperature.temp);
+//!       let coldest = cities.iter().min_by_key(|c| c.temperature);
 //!   ```
 //!
 //!   </details>

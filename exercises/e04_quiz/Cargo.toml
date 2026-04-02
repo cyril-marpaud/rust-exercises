@@ -15,4 +15,4 @@ repository.workspace = true
 version.workspace = true
 
 [dev-dependencies]
-toml = "0.8.23"
+toml = "1"

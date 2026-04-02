@@ -15,4 +15,4 @@ repository.workspace = true
 version.workspace = true
 
 [dev-dependencies]
-rand = "0.9.1"
+rand = "0"

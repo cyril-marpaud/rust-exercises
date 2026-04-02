@@ -17,6 +17,7 @@ version.workspace = true
 [dependencies]
 anyhow = "1"
 chrono = "0"
+roxmltree = "0"
 toml = "1"
 uuid = { version = "1", features = ["v4"] }
 xshell = "0"

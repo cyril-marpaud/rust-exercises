@@ -1,7 +1,7 @@
 [alias]
 c_reqwest_server = "run --package c_reqwest_server"
 guide = "doc --open --no-deps --lib --document-private-items"
-xtask = "run --package xtask"
+reports = "run --package xtask -- reports"
 
 [build]
 rustdocflags = ["--html-in-header", "assets/katex-header.html"]

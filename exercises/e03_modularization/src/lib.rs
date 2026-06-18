@@ -42,7 +42,7 @@
 //!
 //! ## Using Rust Analyzer
 //! Rust Analyzer can greatly simplify the process of refactoring and modularizing your code:
-//! - **Extract to Module**: Select the code to extract, then use the "Extract to Module" quick fix. This can be done by clicking the yellow light bulb (💡) or using the **`ctrl`**+**`.`** shortcut.
+//! - **Extract to Module**: Select the code to extract, then use the "Extract to Module" quick fix. This can be done by clicking the yellow light bulb (💡) or using the **`ctrl`**+**`shift`**+**`;`** shortcut.
 //! - **Extract Module to File**: Place the cursor on the module name, then use the "Extract Module to File" quick fix to move the module to its own file.
 //! - **Rename Module**: To rename a module, simply press **`F2`** when the cursor is on the module's name and enter the new name.
 //!

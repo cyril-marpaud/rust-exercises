@@ -42,7 +42,7 @@
 //!
 //! ## Refactoring Functions
 //! - Update all functions to return `Result`.
-//! - Replace `unwrap()` with `map_err()` to convert various errors into your own type.
+//! - Replace `unwrap()` with [`map_err()`](https://doc.rust-lang.org/stable/std/result/enum.Result.html#method.map_err) to convert various errors into your own type.
 //! - Use the propagation operator to unwrap or propagate those `Result`s.
 //!
 //!     <details>
@@ -58,8 +58,8 @@
 //!     </details>
 //!
 //! ## Bonus: Implement Robust Array Element Access
-//! - Replace direct array indexing with the `.get()` method to safely access elements.
-//! - Combine it with `ok_or` to convert the `Option` into a `Result`.
+//! - Replace direct array indexing with the [`.get()`](https://doc.rust-lang.org/stable/std/primitive.slice.html#method.get) method to safely access elements.
+//! - Combine it with [`ok_or`](https://doc.rust-lang.org/stable/std/option/enum.Option.html#method.ok_or) to convert the `Option` into a `Result`.
 //! - Propagate the error using the `?` operator as well.
 //!
 //! ## Bonus: Implement Robust Operations

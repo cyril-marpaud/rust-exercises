@@ -1,4 +1,4 @@
-What is the capital of France?|Paris|Lyon|Marseille|Bordeaux|1
+What is the capital of France?|Paris|Lyon|Nantes|Bordeaux|1
 How many continents are there on Earth?|Five|Six|Seven|Eight|3
 Who wrote '1984'?|George Orwell|Aldous Huxley|Stephen King|Isaac Asimov|1
 Which chemical element has the symbol 'O'?|Osmium|Oxygen|Gold|Olivine|2

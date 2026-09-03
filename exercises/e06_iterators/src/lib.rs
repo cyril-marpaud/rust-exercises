@@ -22,7 +22,7 @@
 //! - **Last Two Elements Approach:** This method minimizes computation by maintaining a rolling state of the last two numbers, allowing for quick calculation of the next number in the sequence.
 //! - Use Rust Analyzer to facilitate code writing, especially when implementing traits. It can suggest quick fixes and auto-generate boilerplate code for missing trait methods.
 //!
-//! # e06_2_functional_fizzbuzz - FizzBuzz, Functional Paradigm
+//! # Bonus: e06_2_functional_fizzbuzz - FizzBuzz, Functional Paradigm
 //!
 //! ## Overview
 //! Implement the FizzBuzz sequence for the first `n` numbers using the functional programming style, and display them.

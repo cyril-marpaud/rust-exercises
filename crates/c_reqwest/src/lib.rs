@@ -28,7 +28,7 @@
 //! <details>
 //! <summary>Solution</summary>
 //!
-//! ```rust
+//! ```ignore
 //! let r = reqwest::get(format!("{BASE_URL}/")).await?.text().await?;
 //! println!("{r}");
 //! ```

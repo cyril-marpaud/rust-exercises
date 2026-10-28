@@ -145,4 +145,4 @@
 //! ```
 //! </details>
 
-pub mod c_prost_1_deserialize;
+// pub mod c_prost_1_deserialize;

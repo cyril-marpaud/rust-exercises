@@ -101,7 +101,11 @@ mod tests {
 	// 	assert_eq!(
 	// 		format!(
 	// 			"{}",
-	// 			blake3::hash(std::fs::read(filepath).unwrap().as_slice())
+	// 			blake3::hash(
+	// 				std::fs::read(filepath)
+	// 					.expect("Failed to read data/serialized.msgpack")
+	// 					.as_slice()
+	// 			)
 	// 		),
 	// 		"0ff227a10c7737d6a12bce6b578faf2e3ea4a6fcfc6fd4281618bda717006982"
 	// 	);

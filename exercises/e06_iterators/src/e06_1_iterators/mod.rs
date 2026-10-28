@@ -25,3 +25,11 @@ fn iterator() {
 	assert_eq!(i.next(), Some(2584));
 	assert_eq!(i.next(), Some(4181));
 }
+
+// #[test]
+// fn overflow() {
+// 	let mut i = Fibonacci.into_iter();
+//
+// 	assert_eq!(i.nth(186), Some(332825110087067562321196029789634457848));
+// 	assert_eq!(i.next(), None);
+// }

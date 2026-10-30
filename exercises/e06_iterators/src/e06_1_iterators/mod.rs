@@ -27,7 +27,7 @@ fn iterator() {
 }
 
 // #[test]
-// fn overflow() {
+// fn bonus_overflow() {
 // 	let mut i = Fibonacci.into_iter();
 //
 // 	assert_eq!(i.nth(186), Some(332825110087067562321196029789634457848));

@@ -1,51 +1,51 @@
 pub fn fizzbuzz() {}
 
 #[test]
-fn zero() {
+fn bonus_zero() {
 	assert_eq!(fizzbuzz(0), "FizzBuzz");
 }
 
 #[test]
-fn one() {
+fn bonus_one() {
 	assert_eq!(fizzbuzz(1), "1");
 }
 
 #[test]
-fn three() {
+fn bonus_three() {
 	assert_eq!(fizzbuzz(3), "Fizz");
 }
 
 #[test]
-fn five() {
+fn bonus_five() {
 	assert_eq!(fizzbuzz(5), "Buzz");
 }
 
 #[test]
-fn seven() {
+fn bonus_seven() {
 	assert_eq!(fizzbuzz(7), "7");
 }
 
 #[test]
-fn twelve() {
+fn bonus_twelve() {
 	assert_eq!(fizzbuzz(12), "Fizz");
 }
 
 #[test]
-fn fifteen() {
+fn bonus_fifteen() {
 	assert_eq!(fizzbuzz(15), "FizzBuzz");
 }
 
 #[test]
-fn seventeen() {
+fn bonus_seventeen() {
 	assert_eq!(fizzbuzz(17), "17");
 }
 
 #[test]
-fn twenty() {
+fn bonus_twenty() {
 	assert_eq!(fizzbuzz(20), "Buzz");
 }
 
 #[test]
-fn thirty() {
+fn bonus_thirty() {
 	assert_eq!(fizzbuzz(30), "FizzBuzz");
 }

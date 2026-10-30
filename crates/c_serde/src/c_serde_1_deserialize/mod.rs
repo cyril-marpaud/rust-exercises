@@ -94,7 +94,7 @@ mod tests {
 	}
 
 	// #[test]
-	// fn serialized_sorted_msgpack() {
+	// fn bonus_serialized_sorted_msgpack() {
 	// 	let filepath =
 	// 		std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("data/serialized.msgpack");
 	//

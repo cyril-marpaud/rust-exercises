@@ -23,7 +23,7 @@
 //! - Use Rust Analyzer to facilitate code writing, especially when implementing traits. It can suggest quick fixes and auto-generate boilerplate code for missing trait methods.
 //!
 //! ## Bonus: Stop on Overflow
-//! - Switch the iterator to `u128` and make it return `None` once the next number would overflow, instead of panicking. Uncomment the `overflow` test to check your work.
+//! - Switch the iterator to `u128` and make it return `None` once the next number would overflow, instead of panicking. Uncomment the `bonus_overflow` test to check your work.
 //! - Use [`checked_add`](https://doc.rust-lang.org/std/primitive.u128.html#method.checked_add) to detect the overflow.
 //! - The index-based approach cannot pass this test: Binet's formula is computed with `f64`, whose precision runs out long before the largest `u128` Fibonacci number.
 //!

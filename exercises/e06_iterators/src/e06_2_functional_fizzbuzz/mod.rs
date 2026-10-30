@@ -1,7 +1,7 @@
 pub fn fizz_buzz_functional() -> impl Iterator<Item = String> {}
 
 #[test]
-fn test_fizz_buzz_functional() {
+fn bonus_fizz_buzz_functional() {
 	let mut fb = fizz_buzz_functional();
 
 	assert_eq!(fb.next(), Some("1".to_string()));

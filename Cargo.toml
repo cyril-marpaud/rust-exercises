@@ -1,12 +1,13 @@
 [workspace]
+# Course order, followed by the reports: do not sort.
 default-members = [
-	"crates/c_serde",
 	"exercises/e01_fibzz",
 	"exercises/e02_temperature",
 	"exercises/e03_modularization",
 	"exercises/e04_quiz",
 	"exercises/e05_traits",
 	"exercises/e06_iterators",
+	"crates/c_serde",
 ]
 members = [
 	"crates/c_flatbuffers",

@@ -1,9 +1,9 @@
 .venv/
-reports/
 rfp/
 target/
 
 Cargo.lock
+reports.txt
 
 *.png
 *.svg

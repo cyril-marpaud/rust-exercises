@@ -9,12 +9,12 @@ pub fn check_clean_state(sh: &Shell) -> Result<()> {
 }
 
 pub fn checkout_branch(sh: &Shell, branch: &str) -> Result<()> {
-	cmd!(sh, "git checkout -q {branch}").run()?;
+	cmd!(sh, "git checkout -q {branch}").quiet().run()?;
 	Ok(())
 }
 
 pub fn fetch(sh: &Shell) -> Result<()> {
-	cmd!(sh, "git fetch -q").run()?;
+	cmd!(sh, "git fetch -q").quiet().run()?;
 	Ok(())
 }
 
@@ -37,4 +37,17 @@ pub fn get_learner_branches(sh: &Shell) -> Result<Vec<String>> {
 		.filter(|b| !b.is_empty())
 		.map(String::from)
 		.collect())
+}
+
+pub fn list_files(sh: &Shell, rev: &str, dir: &str) -> Result<Vec<String>> {
+	Ok(cmd!(sh, "git ls-tree -r --name-only {rev} -- {dir}")
+		.read()?
+		.lines()
+		.map(String::from)
+		.collect())
+}
+
+pub fn show(sh: &Shell, rev: &str, path: &str) -> Result<String> {
+	let object = format!("{rev}:{path}");
+	Ok(cmd!(sh, "git show {object}").read()?)
 }

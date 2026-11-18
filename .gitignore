@@ -3,7 +3,7 @@ rfp/
 target/
 
 Cargo.lock
-reports.txt
+Résultats et attestations.txt
 
 *.png
 *.svg

@@ -12,7 +12,7 @@ use xshell::{Shell, cmd};
 use crate::git;
 
 const REFERENCE: &str = "origin/main";
-const REPORT: &str = "reports.txt";
+const REPORT: &str = "Résultats et attestations.txt";
 const TITLE_WIDTH: usize = 76;
 
 /// A package of the course, with the tests it holds on the reference branch and the competency it attests.

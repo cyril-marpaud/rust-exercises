@@ -48,10 +48,10 @@ enum Outcome {
 impl Display for Outcome {
 	fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
 		f.write_str(match self {
-			Outcome::BuildFailed => "build failed",
-			Outcome::Failed => "failed",
-			Outcome::Missing => "missing",
-			Outcome::Passed => "passed",
+			Outcome::BuildFailed => "ne compile pas",
+			Outcome::Failed => "échoué",
+			Outcome::Missing => "absent",
+			Outcome::Passed => "réussi",
 		})
 	}
 }
@@ -88,10 +88,10 @@ impl PackageReport {
 			.any(|(_, outcome)| *outcome == Outcome::BuildFailed)
 	}
 
-	/// The `(test, result)` rows of the Failures section. A bonus left untouched is not a failure.
+	/// The `(test, result)` rows of the failures section. A bonus left untouched is not a failure.
 	fn failures(&self) -> Vec<(&str, Outcome)> {
 		if !self.built() {
-			return vec![("all tests", Outcome::BuildFailed)];
+			return vec![("tous les tests", Outcome::BuildFailed)];
 		}
 		self.results
 			.iter()
@@ -148,7 +148,7 @@ pub fn reports() -> Result<()> {
 			println!("\n[{}/{total}] {branch}", i + 1);
 			learner_report(&sh, branch, &packages).unwrap_or_else(|e| {
 				eprintln!("\tError: {e}");
-				format!("{}\n\n  Error: {e}\n", title(branch))
+				format!("{}\n\n  Erreur : {e}\n", title(branch))
 			})
 		})
 		.collect::<Vec<_>>();
@@ -273,7 +273,7 @@ fn render_learner(branch: &str, reports: &[PackageReport]) -> String {
 		.all(|report| report.score(false).0 + report.score(true).0 == 0)
 	{
 		return format!(
-			"{}\n\n  No test passed: nothing to assess.\n",
+			"{}\n\n  Aucun test réussi : rien à évaluer.\n",
 			title(branch)
 		);
 	}
@@ -289,7 +289,7 @@ fn render_learner(branch: &str, reports: &[PackageReport]) -> String {
 	};
 	let header = |cells: [&str; 3]| Row::Cells(cells.map(String::from).to_vec());
 
-	let summary = [header(["Crate", "Required", "Bonus"]), Row::Rule]
+	let summary = [header(["Exercice", "Obligatoires", "Bonus"]), Row::Rule]
 		.into_iter()
 		.chain(reports.iter().map(|report| {
 			Row::Cells(vec![
@@ -317,10 +317,10 @@ fn render_learner(branch: &str, reports: &[PackageReport]) -> String {
 		})
 		.collect::<Vec<_>>();
 	let failures = if failures.is_empty() {
-		"    None.\n".to_string()
+		"    Aucun.\n".to_string()
 	} else {
 		table(
-			&[header(["Crate", "Test", "Result"]), Row::Rule]
+			&[header(["Exercice", "Test", "Résultat"]), Row::Rule]
 				.into_iter()
 				.chain(failures)
 				.collect::<Vec<_>>(),
@@ -329,7 +329,7 @@ fn render_learner(branch: &str, reports: &[PackageReport]) -> String {
 	};
 
 	format!(
-		"{}\n\n  Summary\n\n{}\n  Failures\n\n{failures}",
+		"{}\n\n  Résultats\n\n{}\n  Échecs\n\n{failures}",
 		title(branch),
 		table(&summary, &[false, true, true])
 	)
@@ -356,7 +356,7 @@ fn table(rows: &[Row], right_aligned: &[bool]) -> String {
 		.map(|i| {
 			rows.iter()
 				.filter_map(|row| match row {
-					Row::Cells(cells) => cells.get(i).map(String::len),
+					Row::Cells(cells) => cells.get(i).map(|cell| cell.chars().count()),
 					Row::Rule => None,
 				})
 				.max()
@@ -401,7 +401,7 @@ fn test_names(source: &str) -> Vec<&str> {
 
 fn title(branch: &str) -> String {
 	let head = format!("== {branch} ");
-	let fill = "=".repeat(TITLE_WIDTH.saturating_sub(head.len()));
+	let fill = "=".repeat(TITLE_WIDTH.saturating_sub(head.chars().count()));
 	format!("{head}{fill}")
 }
 
@@ -429,7 +429,7 @@ mod tests {
 				None,
 				(0, 2),
 				(0, 2),
-				vec![("all tests", Outcome::BuildFailed)],
+				vec![("tous les tests", Outcome::BuildFailed)],
 			),
 			// Nothing ran: required tests are missing, bonus ones neutral.
 			(

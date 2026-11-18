@@ -15,8 +15,9 @@ const REFERENCE: &str = "origin/main";
 const REPORT: &str = "reports.txt";
 const TITLE_WIDTH: usize = 76;
 
-/// A package of the course, with the tests it holds on the reference branch.
+/// A package of the course, with the tests it holds on the reference branch and the competency it attests.
 struct Package {
+	competency: String,
 	name: String,
 	tests: Vec<Test>,
 }
@@ -58,6 +59,7 @@ impl Display for Outcome {
 
 /// The outcome of every reference test of one crate on one learner branch.
 struct PackageReport {
+	competency: String,
 	name: String,
 	results: Vec<(Test, Outcome)>,
 }
@@ -76,6 +78,7 @@ impl PackageReport {
 			})
 			.collect();
 		PackageReport {
+			competency: package.competency.clone(),
 			name: package.name.clone(),
 			results,
 		}
@@ -102,6 +105,15 @@ impl PackageReport {
 			})
 			.map(|(test, outcome)| (test.key.as_str(), *outcome))
 			.collect()
+	}
+
+	/// The attested mastery level over the required tests: `None` when none passed, so that the attestation never mentions a failure.
+	fn mastery(&self) -> Option<&'static str> {
+		match self.score(false) {
+			(0, _) => None,
+			(passed, total) if passed == total => Some("complète"),
+			_ => Some("partielle"),
+		}
 	}
 
 	/// `(passed, total)` over the bonus tests, or over the required ones.
@@ -146,10 +158,15 @@ pub fn reports() -> Result<()> {
 		.enumerate()
 		.map(|(i, branch)| {
 			println!("\n[{}/{total}] {branch}", i + 1);
-			learner_report(&sh, branch, &packages).unwrap_or_else(|e| {
-				eprintln!("\tError: {e}");
-				format!("{}\n\n  Erreur : {e}\n", title(branch))
-			})
+			learner_reports(&sh, branch, &packages)
+				.map(|reports| render_learner(branch, &reports))
+				.unwrap_or_else(|e| {
+					eprintln!("\tError: {e}");
+					format!(
+						"{}\n\n  Erreur : {e}\n  Attestation à rédiger à la main.\n",
+						title(branch)
+					)
+				})
 		})
 		.collect::<Vec<_>>();
 
@@ -173,9 +190,9 @@ fn fn_name(line: &str) -> Option<&str> {
 		.map(|(name, _)| name.trim())
 }
 
-fn learner_report(sh: &Shell, branch: &str, packages: &[Package]) -> Result<String> {
+fn learner_reports(sh: &Shell, branch: &str, packages: &[Package]) -> Result<Vec<PackageReport>> {
 	git::checkout_branch(sh, branch)?;
-	let reports = packages
+	packages
 		.iter()
 		.map(|package| {
 			announce(&format!("\t{}", package.name));
@@ -190,11 +207,18 @@ fn learner_report(sh: &Shell, branch: &str, packages: &[Package]) -> Result<Stri
 			}
 			Ok(report)
 		})
-		.collect::<Result<Vec<_>>>()?;
-	Ok(render_learner(branch, &reports))
+		.collect()
 }
 
-fn load_package(sh: &Shell, path: &str) -> Result<Package> {
+fn load_package(sh: &Shell, path: &str, competencies: Option<&Value>) -> Result<Package> {
+	let name = path.rsplit('/').next().unwrap_or(path).to_string();
+	let competency = competencies
+		.and_then(|competencies| competencies.get(&name))
+		.and_then(Value::as_str)
+		.ok_or(anyhow::anyhow!(
+			"no competency for crate '{name}' in {REFERENCE}:Cargo.toml — add it under [workspace.metadata.competencies], then push to main"
+		))?
+		.to_string();
 	let src = format!("{path}/src");
 	let mut tests = Vec::new();
 	for file in git::list_files(sh, REFERENCE, &src)? {
@@ -208,15 +232,20 @@ fn load_package(sh: &Shell, path: &str) -> Result<Package> {
 		}
 	}
 	Ok(Package {
-		name: path.rsplit('/').next().unwrap_or(path).to_string(),
+		competency,
+		name,
 		tests,
 	})
 }
 
 /// The packages of `default-members` on the reference branch, in their declared order.
 fn load_packages(sh: &Shell) -> Result<Vec<Package>> {
-	toml::from_str::<Value>(&git::show(sh, REFERENCE, "Cargo.toml")?)?
-		.get("workspace")
+	let manifest = toml::from_str::<Value>(&git::show(sh, REFERENCE, "Cargo.toml")?)?;
+	let workspace = manifest.get("workspace");
+	let competencies = workspace
+		.and_then(|workspace| workspace.get("metadata"))
+		.and_then(|metadata| metadata.get("competencies"));
+	workspace
 		.and_then(|workspace| workspace.get("default-members"))
 		.and_then(Value::as_array)
 		.ok_or(anyhow::anyhow!(
@@ -227,7 +256,7 @@ fn load_packages(sh: &Shell) -> Result<Vec<Package>> {
 			let path = member.as_str().ok_or(anyhow::anyhow!(
 				"default-members entry {member} is not a path"
 			))?;
-			load_package(sh, path)
+			load_package(sh, path, competencies)
 		})
 		.collect()
 }
@@ -267,15 +296,37 @@ fn parse_libtest(stdout: &str) -> Option<HashMap<String, Outcome>> {
 		})
 }
 
+/// The attestation lines: one sentence per crate whose required tests passed at least partly, in course order.
+fn attestation(reports: &[PackageReport]) -> String {
+	let sentences = reports
+		.iter()
+		.filter_map(|report| {
+			report.mastery().map(|level| {
+				format!(
+					"    A démontré une maîtrise {level} {}.\n",
+					report.competency
+				)
+			})
+		})
+		.collect::<String>();
+	if sentences.is_empty() {
+		"    Impossible d'évaluer le stagiaire.\n".to_string()
+	} else {
+		sentences
+	}
+}
+
 fn render_learner(branch: &str, reports: &[PackageReport]) -> String {
+	let head = format!(
+		"{}\n\n  Attestation\n\n{}",
+		title(branch),
+		attestation(reports)
+	);
 	if reports
 		.iter()
 		.all(|report| report.score(false).0 + report.score(true).0 == 0)
 	{
-		return format!(
-			"{}\n\n  Aucun test réussi : rien à évaluer.\n",
-			title(branch)
-		);
+		return head;
 	}
 	let score = |(passed, total)| match total {
 		0 => "-".to_string(),
@@ -329,8 +380,7 @@ fn render_learner(branch: &str, reports: &[PackageReport]) -> String {
 	};
 
 	format!(
-		"{}\n\n  Résultats\n\n{}\n  Échecs\n\n{failures}",
-		title(branch),
+		"{head}\n  Résultats\n\n{}\n  Échecs\n\n{failures}",
 		table(&summary, &[false, true, true])
 	)
 }
@@ -399,8 +449,9 @@ fn test_names(source: &str) -> Vec<&str> {
 	names
 }
 
+/// The block title, holding the learner's name: branches are named `Prénom_NOM`, since git refuses spaces.
 fn title(branch: &str) -> String {
-	let head = format!("== {branch} ");
+	let head = format!("== {} ", branch.replace('_', " "));
 	let fill = "=".repeat(TITLE_WIDTH.saturating_sub(head.chars().count()));
 	format!("{head}{fill}")
 }
@@ -418,6 +469,7 @@ mod tests {
 	#[test]
 	fn package_report() {
 		let package = Package {
+			competency: "du test".into(),
 			name: "e00".into(),
 			tests: ["a", "b", "bonus_c", "bonus_d"]
 				.map(|name| Test::new("m", name))
